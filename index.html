@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAPPY CONNECT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#fff;
+overflow:hidden;
+height:100vh;
+}
+
+/* Splash Screen */
+
+#splash{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:999;
+animation:hideSplash 4s forwards;
+}
+
+#splash h1{
+font-size:60px;
+color:#ff4081;
+animation:zoom 2s infinite alternate;
+}
+
+#splash p{
+margin-top:15px;
+font-size:20px;
+color:#666;
+}
+
+@keyframes zoom{
+from{transform:scale(1);}
+to{transform:scale(1.15);}
+}
+
+@keyframes hideSplash{
+0%,85%{
+opacity:1;
+visibility:visible;
+}
+100%{
+opacity:0;
+visibility:hidden;
+}
+}
+
+/* Main */
+
+.container{
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+height:100vh;
+text-align:center;
+position:relative;
+overflow:hidden;
+}
+
+/* Floating Emojis */
+
+.emoji{
+position:absolute;
+font-size:35px;
+animation:float 8s linear infinite;
+opacity:.7;
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(100vh) rotate(0deg);
+}
+
+100%{
+transform:translateY(-120vh) rotate(360deg);
+}
+
+}
+
+/* Logo */
+
+.logo{
+
+width:170px;
+height:170px;
+border-radius:50%;
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+margin-bottom:20px;
+
+}
+
+/* Typing Text */
+
+.typing{
+font-size:25px;
+font-weight:600;
+color:#444;
+height:35px;
+margin-bottom:30px;
+}
+
+/* Buttons */
+
+.buttons{
+display:flex;
+flex-direction:column;
+gap:15px;
+width:280px;
+}
+
+.buttons a{
+
+text-decoration:none;
+padding:14px;
+border-radius:40px;
+color:white;
+font-size:18px;
+font-weight:600;
+transition:.3s;
+
+}
+
+.buttons a:hover{
+transform:scale(1.06);
+}
+
+.insta{
+background:#E1306C;
+}
+
+.fb{
+background:#1877F2;
+}
+
+.web{
+background:#00b894;
+}
+
+.map{
+background:#ff9800;
+}
+
+/* Footer */
+
+footer{
+position:absolute;
+bottom:15px;
+width:100%;
+text-align:center;
+font-size:14px;
+color:#555;
+}
+
+/* Responsive */
+
+@media(max-width:600px){
+
+.logo{
+width:130px;
+height:130px;
+}
+
+.typing{
+font-size:18px;
+}
+
+.buttons{
+width:220px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Splash -->
+
+<div id="splash">
+
+<h1>🎉 HAPPY CONNECT 🎉</h1>
+
+<p>Welcome...</p>
+
+</div>
+
+<!-- Main -->
+
+<div class="container">
+
+<!-- Floating Emojis -->
+
+<div class="emoji" style="left:5%;animation-duration:9s;">🎈</div>
+<div class="emoji" style="left:18%;animation-duration:7s;">😊</div>
+<div class="emoji" style="left:30%;animation-duration:10s;">🎉</div>
+<div class="emoji" style="left:45%;animation-duration:8s;">🎈</div>
+<div class="emoji" style="left:60%;animation-duration:12s;">🥳</div>
+<div class="emoji" style="left:75%;animation-duration:9s;">🎊</div>
+<div class="emoji" style="left:90%;animation-duration:11s;">😊</div>
+
+<img src="logo.png" class="logo">
+
+<div class="typing">
+<span id="text"></span>
+</div>
+
+<div class="buttons">
+
+<a href="https://instagram.com/" class="insta">
+📸 Instagram
+</a>
+
+<a href="https://facebook.com/" class="fb">
+📘 Facebook
+</a>
+
+<a href="https://yourwebsite.com" class="web">
+🌐 Website
+</a>
+
+<a href="https://maps.google.com" class="map">
+📍 Maps
+</a>
+
+</div>
+
+<footer>
+
+© 2026 All Rights Reserved Happy Connect<br>
+
+Designed by <b>Happy Days Decors</b>
+
+</footer>
+
+</div>
+
+<script>
+
+const words=[
+"Thank You For Scanning ❤️",
+"Welcome To HAPPY CONNECT 🎉",
+"We Make Every Event Special 🥳",
+"Follow Us On Social Media 😊"
+];
+
+let i=0;
+let j=0;
+let current="";
+let isDeleting=false;
+
+function type(){
+
+current=words[i];
+
+if(isDeleting){
+
+document.getElementById("text").innerHTML=current.substring(0,j--);
+
+}else{
+
+document.getElementById("text").innerHTML=current.substring(0,j++);
+
+}
+
+if(!isDeleting && j==current.length){
+
+isDeleting=true;
+
+setTimeout(type,1200);
+
+return;
+
+}
+
+if(isDeleting && j==0){
+
+isDeleting=false;
+
+i++;
+
+if(i==words.length){
+
+i=0;
+
+}
+
+}
+
+setTimeout(type,isDeleting?45:90);
+
+}
+
+type();
+
+</script>
+
+</body>
+</html>
