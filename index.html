@@ -373,6 +373,18 @@ text-align:center;
 color:#666;
 font-size:15px;
 }
+  /* Secret Admin Link Styling */
+.secret-admin-link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.secret-admin-link:hover {
+  color: #e6a100; /* Subtle feedback tint matching your theme yellow when hovered */
+}
+  
 
 @media(max-width:600px){
 
@@ -562,13 +574,14 @@ font-size:14px;
 
 <footer>
 
-© 2026 All Rights Reserved - HAPPY CONNECT
+<a href="admin.html" class="secret-admin-link">&copy;</a> 2026 All Rights Reserved - HAPPY CONNECT
 
 <br><br>
 
 Designed by <b>Happy Days Decors</b>
 
 </footer>
+
 
 </section>
 
