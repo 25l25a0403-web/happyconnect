@@ -119,32 +119,7 @@ height:36px;
 margin-bottom:20px;
 }
 
-.buttons{
-display:flex;
-flex-direction:column;
-gap:12px;
-width:290px;
-margin-bottom:25px;
-}
-
-.buttons a{
-padding:12px;
-border-radius:40px;
-text-decoration:none;
-color:#fff;
-font-size:16px;
-font-weight:600;
-transition:.3s;
-}
-.buttons a:hover{ transform:scale(1.03); }
-
-.instagram{background:#E1306C;}
-.facebook{background:#1877F2;}
-.whatsapp{background:#25D366;}
-.website{background:#00b894;}
-.maps{background:#ff9800;}
-
-/* Search & Filters Styling - Margin Bottom Minimized */
+/* Search & Filters Styling */
 .search-filter-box {
 width: 100%;
 max-width: 600px;
@@ -191,7 +166,7 @@ background: #fff;
 cursor: pointer;
 }
 
-/* E-Commerce Cards Grid Section - Margin Top Minimized */
+/* E-Commerce Cards Grid Section */
 .products-section {
 width: 100%;
 max-width: 1200px;
@@ -522,7 +497,6 @@ background: #fafafa;
 .conversation-container span { font-size: 15px; }
 .logo{ width:120px; height:120px; }
 .typing{ font-size:18px; height:50px; }
-.buttons{ width:100%; max-width:280px; }
 .offer { flex: 0 0 230px; }
 .stats-container { gap: 10px; }
 .stat-item { font-size: 13px; padding: 5px 10px; }
@@ -568,14 +542,6 @@ background: #fafafa;
 
   <div class="typing">
     <span id="typing"></span>
-  </div>
-
-  <div class="buttons" id="buttons">
-    <a class="instagram" href="https://instagram.com"><i class="fab fa-instagram"></i> Instagram</a>
-    <a class="facebook" href="https://facebook.com"><i class="fab fa-facebook-f"></i> Facebook</a>
-    <a class="whatsapp" href="https://wa.me/919999999999"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-    <a class="website" href="https://yourwebsite.com"><i class="fas fa-globe"></i> Website</a>
-    <a class="maps" href="https://maps.google.com"><i class="fas fa-location-dot"></i> Maps</a>
   </div>
 
   <!-- Search Bar & Category Dropdown Section -->
@@ -641,7 +607,7 @@ background: #fafafa;
   </div>
 </section>
 
-<!-- Updated Interactive Slot Booking Form Modal -->
+<!-- Interactive Slot Booking Form Modal -->
 <div class="modal-overlay" id="bookingModal">
   <div class="modal-box">
     <i class="fas fa-times modal-close" id="closeModal"></i>
@@ -696,7 +662,7 @@ background: #fafafa;
       <button type="submit" class="submit-btn">Book Slot Now</button>
     </form>
 
-    <!-- Requested Success Message Response with Brand Footer Variant -->
+    <!-- Success Message Response with Brand Footer Variant -->
     <div class="success-message" id="successMsg">
       <i class="fas fa-check-circle"></i>
       <h3>Slot Booked Successfully!</h3>
@@ -847,7 +813,6 @@ const successMessageBox = document.getElementById('successMsg');
 const modalSetupDetails = document.getElementById('modalSetupDetails');
 
 function openBookingModal(title, code, price) {
-  // Populate hidden fields and labels with product data
   document.getElementById('hiddenTitle').value = title;
   document.getElementById('hiddenCode').value = code;
   document.getElementById('hiddenPrice').value = price;
@@ -858,7 +823,6 @@ function openBookingModal(title, code, price) {
   successMessageBox.style.display = "none";
   bookingForm.reset();
   
-  // Enforce automatic sync state on click
   whatsappInput.value = contactInput.value;
   whatsappInput.readOnly = true;
   sameAsContactCheckbox.checked = true;
