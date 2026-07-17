@@ -6,6 +6,7 @@
 <title>HAPPY CONNECT</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
 
@@ -17,9 +18,8 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
-background:#fff;
-overflow:hidden;
-height:100vh;
+background:#ffffff;
+overflow-x:hidden;
 }
 
 /* Splash Screen */
@@ -30,30 +30,30 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:white;
+background:#fff;
 display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-z-index:999;
+z-index:9999;
 animation:hideSplash 4s forwards;
 }
 
 #splash h1{
-font-size:60px;
-color:#ff4081;
-animation:zoom 2s infinite alternate;
+font-size:55px;
+color:#ff4d6d;
+animation:zoom 1.5s infinite alternate;
 }
 
 #splash p{
-margin-top:15px;
-font-size:20px;
+margin-top:10px;
+font-size:18px;
 color:#666;
 }
 
 @keyframes zoom{
 from{transform:scale(1);}
-to{transform:scale(1.15);}
+to{transform:scale(1.1);}
 }
 
 @keyframes hideSplash{
@@ -67,32 +67,21 @@ visibility:hidden;
 }
 }
 
-/* Main */
+/* Background Floating Emojis */
 
-.container{
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-height:100vh;
-text-align:center;
-position:relative;
-overflow:hidden;
-}
-
-/* Floating Emojis */
-
-.emoji{
-position:absolute;
-font-size:35px;
-animation:float 8s linear infinite;
-opacity:.7;
+.bg span{
+position:fixed;
+font-size:40px;
+animation:float linear infinite;
+opacity:.18;
+user-select:none;
+z-index:-1;
 }
 
 @keyframes float{
 
 0%{
-transform:translateY(100vh) rotate(0deg);
+transform:translateY(110vh) rotate(0deg);
 }
 
 100%{
@@ -101,81 +90,136 @@ transform:translateY(-120vh) rotate(360deg);
 
 }
 
-/* Logo */
+/* Hero */
+
+.hero{
+min-height:100vh;
+padding:40px 20px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
 
 .logo{
-
 width:170px;
 height:170px;
 border-radius:50%;
-box-shadow:0 10px 25px rgba(0,0,0,.2);
-margin-bottom:20px;
-
+object-fit:cover;
+box-shadow:0 12px 30px rgba(0,0,0,.2);
+margin-bottom:25px;
 }
-
-/* Typing Text */
 
 .typing{
-font-size:25px;
-font-weight:600;
+font-size:28px;
+font-weight:700;
 color:#444;
-height:35px;
-margin-bottom:30px;
+height:42px;
+margin-bottom:20px;
 }
 
-/* Buttons */
-
 .buttons{
-display:flex;
+display:none;
 flex-direction:column;
-gap:15px;
-width:280px;
+gap:14px;
+width:290px;
+animation:fadeIn .8s;
+}
+
+.buttons.show{
+display:flex;
 }
 
 .buttons a{
-
-text-decoration:none;
-padding:14px;
+padding:15px;
 border-radius:40px;
-color:white;
+text-decoration:none;
+color:#fff;
 font-size:18px;
 font-weight:600;
 transition:.3s;
-
 }
 
 .buttons a:hover{
-transform:scale(1.06);
+transform:scale(1.05);
 }
 
-.insta{
-background:#E1306C;
+.instagram{background:#E1306C;}
+.facebook{background:#1877F2;}
+.whatsapp{background:#25D366;}
+.website{background:#00b894;}
+.maps{background:#ff9800;}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:scale(.5);
 }
 
-.fb{
-background:#1877F2;
+to{
+opacity:1;
+transform:scale(1);
 }
 
-.web{
-background:#00b894;
 }
 
-.map{
-background:#ff9800;
+/* Offers */
+
+.offers{
+margin:40px auto;
+max-width:1000px;
+width:100%;
 }
 
-/* Footer */
+.offers h2{
+margin-bottom:20px;
+color:#ff4d6d;
+}
+
+.offer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.offer{
+background:#fff;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+transition:.3s;
+}
+
+.offer:hover{
+transform:translateY(-5px);
+}
+
+.offer img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.offer h3{
+padding:12px;
+color:#ff4d6d;
+}
+
+.offer p{
+padding:0 12px 15px;
+color:#555;
+font-size:15px;
+}
 
 footer{
-position:absolute;
-bottom:15px;
-width:100%;
+margin-top:30px;
+padding:20px;
 text-align:center;
-font-size:14px;
-color:#555;
+color:#666;
+font-size:15px;
 }
-
-/* Responsive */
 
 @media(max-width:600px){
 
@@ -185,138 +229,176 @@ height:130px;
 }
 
 .typing{
-font-size:18px;
+font-size:20px;
+height:60px;
 }
 
 .buttons{
-width:220px;
+width:100%;
+max-width:280px;
 }
 
 }
 
 </style>
-
 </head>
 
 <body>
 
-<!-- Splash -->
-
 <div id="splash">
-
 <h1>🎉 HAPPY CONNECT 🎉</h1>
-
 <p>Welcome...</p>
+</div>
+
+<div class="bg">
+
+<span style="left:5%;animation-duration:12s;">😊</span>
+<span style="left:15%;animation-duration:9s;">🎈</span>
+<span style="left:25%;animation-duration:11s;">🥳</span>
+<span style="left:35%;animation-duration:13s;">🎉</span>
+<span style="left:45%;animation-duration:8s;">🎈</span>
+<span style="left:55%;animation-duration:10s;">😁</span>
+<span style="left:65%;animation-duration:14s;">🎊</span>
+<span style="left:75%;animation-duration:9s;">😊</span>
+<span style="left:85%;animation-duration:12s;">🎈</span>
+<span style="left:95%;animation-duration:15s;">🥳</span>
 
 </div>
 
-<!-- Main -->
-
-<div class="container">
-
-<!-- Floating Emojis -->
-
-<div class="emoji" style="left:5%;animation-duration:9s;">🎈</div>
-<div class="emoji" style="left:18%;animation-duration:7s;">😊</div>
-<div class="emoji" style="left:30%;animation-duration:10s;">🎉</div>
-<div class="emoji" style="left:45%;animation-duration:8s;">🎈</div>
-<div class="emoji" style="left:60%;animation-duration:12s;">🥳</div>
-<div class="emoji" style="left:75%;animation-duration:9s;">🎊</div>
-<div class="emoji" style="left:90%;animation-duration:11s;">😊</div>
+<section class="hero">
 
 <img src="logo.png" class="logo">
 
 <div class="typing">
-<span id="text"></span>
+<span id="typing"></span>
 </div>
 
-<div class="buttons">
+<div class="buttons" id="buttons">
 
-<a href="https://instagram.com/" class="insta">
-📸 Instagram
+<a class="instagram" href="https://instagram.com">
+<i class="fab fa-instagram"></i> Instagram
 </a>
 
-<a href="https://facebook.com/" class="fb">
-📘 Facebook
+<a class="facebook" href="https://facebook.com">
+<i class="fab fa-facebook-f"></i> Facebook
 </a>
 
-<a href="https://yourwebsite.com" class="web">
-🌐 Website
+<a class="whatsapp" href="https://wa.me/919999999999">
+<i class="fab fa-whatsapp"></i> WhatsApp
 </a>
 
-<a href="https://maps.google.com" class="map">
-📍 Maps
+<a class="website" href="https://yourwebsite.com">
+<i class="fas fa-globe"></i> Website
 </a>
+
+<a class="maps" href="https://maps.google.com">
+<i class="fas fa-location-dot"></i> Maps
+</a>
+
+</div>
+
+<div class="offers">
+
+<h2>🎁 Special Offers</h2>
+
+<div class="offer-grid">
+
+<div class="offer">
+<img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600" alt="">
+<h3>Birthday Decoration</h3>
+<p>Starting from ₹2,999</p>
+</div>
+
+<div class="offer">
+<img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600" alt="">
+<h3>Wedding Decoration</h3>
+<p>Flat 15% OFF</p>
+</div>
+
+<div class="offer">
+<img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=600" alt="">
+<h3>Baby Shower</h3>
+<p>Book Now & Get Free Welcome Board</p>
+</div>
+
+<div class="offer">
+<img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600" alt="">
+<h3>Haldi & Mehendi</h3>
+<p>Special Combo Offers Available</p>
+</div>
+
+</div>
 
 </div>
 
 <footer>
 
-© 2026 All Rights Reserved Happy Connect<br>
+© 2026 All Rights Reserved - HAPPY CONNECT
+
+<br><br>
 
 Designed by <b>Happy Days Decors</b>
 
 </footer>
 
-</div>
+</section>
 
 <script>
 
-const words=[
+const texts=[
 "Thank You For Scanning ❤️",
 "Welcome To HAPPY CONNECT 🎉",
-"We Make Every Event Special 🥳",
-"Follow Us On Social Media 😊"
+"Let's Make Every Celebration Memorable 🥳",
+"Happy Days Decors Welcomes You 😊"
 ];
 
-let i=0;
-let j=0;
-let current="";
-let isDeleting=false;
+let textIndex=0;
+let charIndex=0;
+let deleting=false;
 
-function type(){
+function typeText(){
 
-current=words[i];
+const current=texts[textIndex];
 
-if(isDeleting){
+if(!deleting){
 
-document.getElementById("text").innerHTML=current.substring(0,j--);
+document.getElementById("typing").innerHTML=current.substring(0,charIndex++);
 
-}else{
+if(charIndex>current.length){
 
-document.getElementById("text").innerHTML=current.substring(0,j++);
+deleting=true;
 
-}
+document.getElementById("buttons").classList.add("show");
 
-if(!isDeleting && j==current.length){
-
-isDeleting=true;
-
-setTimeout(type,1200);
+setTimeout(typeText,1500);
 
 return;
 
 }
 
-if(isDeleting && j==0){
+}else{
 
-isDeleting=false;
+document.getElementById("typing").innerHTML=current.substring(0,charIndex--);
 
-i++;
+if(charIndex==0){
 
-if(i==words.length){
+deleting=false;
 
-i=0;
+textIndex++;
 
+if(textIndex>=texts.length){
+textIndex=0;
 }
 
 }
 
-setTimeout(type,isDeleting?45:90);
+}
+
+setTimeout(typeText,deleting?40:80);
 
 }
 
-type();
+setTimeout(typeText,4200);
 
 </script>
 
