@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAPPY CONNECT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#ffffff;
+overflow-x:hidden;
+color: #444;
+}
+
+/* Color Variables */
+:root {
+  --primary-yellow: #ffd166;
+  --accent-gold: #e6a100;
+  --text-dark: #333;
+}
+
+/* Splash Screen & Gift Box Animation */
+#splash{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#fff;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+opacity:1;
+visibility:visible;
+transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.splash-content {
+position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+width: 300px;
+height: 300px;
+}
+
+.gift-box-container {
+position: absolute;
+width: 150px;
+height: 150px;
+cursor: pointer;
+animation: bounce 1s infinite alternate;
+z-index: 2;
+transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.gift-box {
+position: absolute;
+bottom: 0;
+left: 15px;
+width: 120px;
+height: 100px;
+background: #ff4d6d;
+border-radius: 0 0 10px 10px;
+box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.gift-box::before {
+content: '';
+position: absolute;
+left: 50%;
+transform: translateX(-50%);
+width: 24px;
+height: 100%;
+background: var(--primary-yellow);
+}
+
+.gift-lid {
+position: absolute;
+top: 38px;
+left: 7px;
+width: 136px;
+height: 25px;
+background: #ff3355;
+border-radius: 5px;
+z-index: 3;
+transform-origin: left bottom;
+transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gift-lid::before {
+content: '';
+position: absolute;
+left: 50%;
+transform: translateX(-50%);
+width: 24px;
+height: 100%;
+background: var(--primary-yellow);
+}
+
+.bow {
+position: absolute;
+top: -20px;
+left: 50%;
+transform: translateX(-50%);
+width: 40px;
+height: 20px;
+display: flex;
+justify-content: space-between;
+}
+
+.bow-left, .bow-right {
+width: 22px;
+height: 22px;
+background: var(--primary-yellow);
+border-radius: 50%;
+border: 3px solid #ff4d6d;
+}
+
+.bow-left { transform: rotate(-35deg) translate(3px, 2px); }
+.bow-right { transform: rotate(35deg) translate(-3px, 2px); }
+
+.logo-reveal {
+position: absolute;
+transform: scale(0);
+opacity: 0;
+text-align: center;
+transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease;
+z-index: 1;
+width: 100%;
+padding: 0 15px;
+}
+
+.logo-reveal img {
+width: 130px;
+height: 130px;
+border-radius: 50%;
+box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+object-fit: cover;
+margin-bottom: 15px;
+}
+
+.logo-reveal h1 {
+font-size: 22px;
+color: #ff4d6d;
+white-space: nowrap;
+letter-spacing: 0.5px;
+}
+
+@keyframes bounce {
+0% { transform: translateY(0); }
+100% { transform: translateY(-15px); }
+}
+
+.gift-box-container.open .gift-lid {
+transform: translate(-40px, -70px) rotate(-45deg);
+opacity: 0;
+}
+
+.gift-box-container.open .gift-box {
+transform: scale(0.8);
+opacity: 0;
+transition-delay: 0.2s;
+}
+
+.gift-box-container.open {
+pointer-events: none;
+animation: none;
+}
+
+.logo-reveal.show {
+transform: scale(1);
+opacity: 1;
+}
+
+/* Background Floating Emojis */
+.bg span{
+position:fixed;
+font-size:40px;
+animation:float linear infinite;
+opacity:.18;
+user-select:none;
+z-index:-1;
+}
+
+@keyframes float{
+0%{ transform:translateY(110vh) rotate(0deg); }
+100%{ transform:translateY(-120vh) rotate(360deg); }
+}
+
+/* Hero Section Updates */
+.hero{
+min-height:100vh;
+padding:60px 20px 20px 20px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.logo{
+width:170px;
+height:170px;
+border-radius:50%;
+object-fit:cover;
+box-shadow:0 12px 30px rgba(0,0,0,.2);
+margin-bottom:20px;
+}
+
+.typing{
+font-size:26px;
+font-weight:700;
+color:#444;
+height:42px;
+margin-bottom:20px;
+}
+
+/* Stats Section */
+.stats-container {
+display: flex;
+gap: 30px;
+margin-bottom: 30px;
+background: rgba(255, 255, 255, 0.9);
+padding: 12px 25px;
+border-radius: 50px;
+box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.stat-item {
+display: flex;
+align-items: center;
+gap: 8px;
+font-weight: 600;
+font-size: 16px;
+color: var(--text-dark);
+}
+
+.stat-item i {
+color: var(--accent-gold);
+font-size: 20px;
+}
+
+/* Search and Filters */
+.search-filter-box {
+width: 100%;
+max-width: 600px;
+background: #fff;
+padding: 15px;
+border-radius: 35px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+display: flex;
+gap: 10px;
+margin-bottom: 40px;
+flex-wrap: wrap;
+}
+
+.search-wrapper {
+position: relative;
+flex: 1;
+min-width: 200px;
+}
+
+.search-wrapper i {
+position: absolute;
+left: 15px;
+top: 50%;
+transform: translateY(-50%);
+color: var(--accent-gold);
+}
+
+.search-wrapper input {
+width: 100%;
+padding: 12px 12px 12px 40px;
+border: 1px solid #eee;
+border-radius: 25px;
+outline: none;
+font-size: 15px;
+transition: 0.3s;
+}
+
+.search-wrapper input:focus {
+border-color: var(--accent-gold);
+}
+
+.category-dropdown {
+padding: 12px 20px;
+border-radius: 25px;
+border: 1px solid #eee;
+outline: none;
+font-size: 15px;
+background: #fff;
+cursor: pointer;
+color: var(--text-dark);
+min-width: 180px;
+}
+
+.category-dropdown:focus {
+border-color: var(--accent-gold);
+}
+
+/* Main Section Titles */
+.section-title {
+color: var(--accent-gold);
+font-size: 28px;
+margin-bottom: 30px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+/* Products Grid */
+.products-container {
+max-width: 1200px;
+width: 100%;
+margin: 0 auto;
+padding: 0 20px;
+}
+
+.products-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+gap: 30px;
+margin-bottom: 50px;
+}
+
+.product-card {
+background: #fff;
+border-radius: 20px;
+overflow: hidden;
+box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+transition: transform 0.3s, box-shadow 0.3s;
+display: flex;
+flex-direction: column;
+border: 1px solid #f7f7f7;
+}
+
+.product-card:hover {
+transform: translateY(-8px);
+box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.product-image {
+width: 100%;
+height: 200px;
+object-fit: cover;
+}
+
+.product-info {
+padding: 20px;
+flex-grow: 1;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+text-align: left;
+}
+
+.product-title {
+font-size: 18px;
+font-weight: 600;
+color: var(--text-dark);
+margin-bottom: 8px;
+}
+
+.product-tag {
+font-size: 13px;
+color: #888;
+margin-bottom: 15px;
+display: inline-block;
+background: #f9f9f9;
+padding: 2px 10px;
+border-radius: 10px;
+width: max-content;
+}
+
+.book-btn {
+background: var(--primary-yellow);
+color: var(--text-dark);
+border: none;
+padding: 12px;
+border-radius: 12px;
+font-size: 15px;
+font-weight: 600;
+cursor: pointer;
+transition: 0.2s;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+width: 100%;
+text-decoration: none;
+}
+
+.book-btn:hover {
+background: var(--accent-gold);
+color: #fff;
+}
+
+/* Booking Modal */
+.modal-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.5);
+z-index: 10000;
+display: none;
+justify-content: center;
+align-items: center;
+opacity: 0;
+transition: opacity 0.3s ease;
+padding: 20px;
+}
+
+.modal-overlay.show {
+display: flex;
+opacity: 1;
+}
+
+.modal-box {
+background: #fff;
+width: 100%;
+max-width: 450px;
+border-radius: 24px;
+padding: 30px;
+box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+position: relative;
+transform: scale(0.9);
+transition: transform 0.3s ease;
+max-height: 90vh;
+overflow-y: auto;
+}
+
+.modal-overlay.show .modal-box {
+transform: scale(1);
+}
+
+.close-modal {
+position: absolute;
+top: 20px;
+right: 20px;
+font-size: 22px;
+cursor: pointer;
+color: #999;
+transition: 0.2s;
+}
+
+.close-modal:hover {
+color: var(--text-dark);
+}
+
+.modal-title {
+color: var(--accent-gold);
+font-size: 22px;
+font-weight: 700;
+margin-bottom: 20px;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.form-group {
+margin-bottom: 18px;
+text-align: left;
+}
+
+.form-group label {
+display: block;
+font-size: 14px;
+font-weight: 600;
+margin-bottom: 6px;
+color: #555;
+}
+
+.form-group input, .form-group select {
+width: 100%;
+padding: 12px 15px;
+border: 1px solid #ddd;
+border-radius: 12px;
+outline: none;
+font-size: 15px;
+transition: 0.3s;
+}
+
+.form-group input:focus {
+border-color: var(--accent-gold);
+}
+
+.checkbox-group {
+display: flex;
+align-items: center;
+gap: 8px;
+margin-bottom: 18px;
+}
+
+.checkbox-group input {
+width: 16px;
+height: 16px;
+cursor: pointer;
+}
+
+.submit-btn {
+background: var(--primary-yellow);
+color: var(--text-dark);
+width: 100%;
+padding: 14px;
+border: none;
+border-radius: 12px;
+font-size: 16px;
+font-weight: 700;
+cursor: pointer;
+transition: 0.3s;
+}
+
+.submit-btn:hover {
+background: var(--accent-gold);
+color: #fff;
+}
+
+/* Success Message inside Form */
+.success-message {
+display: none;
+text-align: center;
+padding: 20px 10px;
+}
+
+.success-message i {
+font-size: 50px;
+color: #25D366;
+margin-bottom: 15px;
+}
+
+.success-message h3 {
+color: var(--accent-gold);
+margin-bottom: 10px;
+}
+
+/* Footer Styling */
+footer {
+background: #fdfdfd;
+padding: 30px 20px;
+text-align: center;
+color: #666;
+font-size: 15px;
+border-top: 1px solid #eee;
+width: 100%;
+margin-top: 50px;
+}
+
+/* Mobile Responsiveness */
+@media(max-width:600px){
+.logo-reveal h1 { font-size: 18px; }
+.logo { width:130px; height:130px; }
+.typing { font-size: 19px; height: 55px; }
+.search-filter-box { border-radius: 20px; }
+.stats-container { gap: 15px; padding: 10px 20px; }
+.stat-item { font-size: 14px; }
+.section-title { font-size: 22px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Interactive Gift Splash Screen -->
+<div id="splash">
+  <div class="splash-content">
+    <div class="gift-box-container" id="giftBoxContainer">
+      <div class="gift-lid">
+        <div class="bow">
+          <div class="bow-left"></div>
+          <div class="bow-right"></div>
+        </div>
+      </div>
+      <div class="gift-box"></div>
+    </div>
+    <div class="logo-reveal" id="logoReveal">
+      <img src="logo.png" alt="HAPPY CONNECT Logo">
+      <h1>HAPPY CONNECT</h1>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Emoji Layer -->
+<div class="bg">
+  <span style="left:5%;animation-duration:12s;">😊</span>
+  <span style="left:15%;animation-duration:9s;">🎈</span>
+  <span style="left:25%;animation-duration:11s;">🥳</span>
+  <span style="left:35%;animation-duration:13s;">🎉</span>
+  <span style="left:45%;animation-duration:8s;">🎈</span>
+  <span style="left:55%;animation-duration:10s;">😁</span>
+  <span style="left:65%;animation-duration:14s;">🎊</span>
+  <span style="left:75%;animation-duration:9s;">😊</span>
+  <span style="left:85%;animation-duration:12s;">🎈</span>
+  <span style="left:95%;animation-duration:15s;">🥳</span>
+</div>
+
+<!-- Main Hero Setup -->
+<section class="hero">
+  <img src="logo.png" class="logo" alt="HAPPY CONNECT Logo">
+
+  <!-- Added Live Counters in Theme Color -->
+  <div class="stats-container">
+    <div class="stat-item"><i class="fab fa-instagram"></i> <span>10K+ Followers</span></div>
+    <div class="stat-item"><i class="fas fa-users"></i> <span>5K+ Happy Customers</span></div>
+  </div>
+
+  <div class="typing">
+    <span id="typing"></span>
+  </div>
+
+  <!-- Search and Dropdown Category Filter Box -->
+  <div class="search-filter-box">
+    <div class="search-wrapper">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Search setups or packages..." onkeyup="filterEvents()">
+    </div>
+    <select class="category-dropdown" id="categorySelect" onchange="filterEvents()">
+      <option value="all">All Event Categories</option>
+      <option value="Birthday">Birthday</option>
+      <option value="Anniversary">Anniversary</option>
+      <option value="Baby welcome">Baby welcome</option>
+      <option value="Baby shower">Baby shower</option>
+      <option value="Graduations">Graduations</option>
+      <option value="Bride to be">Bride to be</option>
+      <option value="Parents special">Parents special</option>
+      <option value="Proposal">Proposal</option>
+      <option value="Theme birthday">Theme birthday</option>
+      <option value="Corporate events">Corporate events</option>
+      <option value="Education">Education</option>
+      <option value="Welcome arch">Welcome arch</option>
+      <option value="New openings">New openings</option>
+    </select>
+  </div>
+</section>
+
+<!-- eCommerce Event Collection Grid -->
+<main class="products-container">
+  <h2 class="section-title">✨ Browse & Book Events</h2>
+  <div class="products-grid" id="productsGrid">
+    <!-- 25 Automated Custom Dynamic Cards -->
+  </div>
+</main>
+
+<!-- Unified Slot Booking Form Modal -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal-box">
+    <i class="fas fa-times close-modal" onclick="closeModal()"></i>
+    
+    <div id="formContent">
+      <h3 class="modal-title">🎉 Slot Booking Form</h3>
+      <form id="slotForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label for="fullName">Full Name *</label>
+          <input type="text" id="fullName" required placeholder="Enter your full name">
+        </div>
+        
+        <div class="form-group">
+          <label for="contactNum">Contact Number *</label>
+          <input type="tel" id="contactNum" required placeholder="Enter contact number" oninput="syncWhatsApp()">
+        </div>
+        
+        <div class="checkbox-group">
+          <input type="checkbox" id="sameAsWhatsapp" checked onchange="syncWhatsApp()">
+          <label for="sameAsWhatsapp" style="font-size: 14px; cursor:pointer;">WhatsApp number is same as contact</label>
+        </div>
+
+        <div class="form-group">
+          <label for="whatsappNum">WhatsApp Number *</label>
+          <input type="tel" id="whatsappNum" required placeholder="Enter WhatsApp number">
+        </div>
+
+        <div class="form-group">
+          <label for="eventSelectField">Selected Setup Type</label>
+          <input type="text" id="eventSelectField" readonly style="background: #f5f5f5;">
+        </div>
+
+        <div class="form-group">
+          <label for="locationType">Location Details *</label>
+          <select id="locationType" onchange="toggleMapLink()" required>
+            <option value="">-- Choose Location Option --</option>
+            <option value="manual">Type Address Manually</option>
+            <option value="maps">Share via Google Maps Link</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="locationInputWrapper" style="display:none;">
+          <label id="locationLabel" function="label">Address / Link</label>
+          <input type="text" id="locationData" placeholder="">
+        </div>
+
+        <button type="submit" class="submit-btn">Confirm Booking Slot</button>
+      </form>
+    </div>
+
+    <!-- Success Message Template -->
+    <div id="successMessage" class="success-message">
+      <i class="fas fa-circle-check"></i>
+      <h3>Slot Registered Successfully!</h3>
+      <p>Thank you for connecting. Our specialized decor manager will reach out via WhatsApp/Call shortly to verify scheduling.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2026 All Rights Reserved - <b>HAPPY CONNECT</b>
+  <br><br>
+  Designed by <b>Happy Days Decors</b>
+</footer>
+
+<script>
+// Gift Box Auto Reveal System
+window.addEventListener('DOMContentLoaded', () => {
+  const giftBox = document.getElementById('giftBoxContainer');
+  const logoReveal = document.getElementById('logoReveal');
+  const splash = document.getElementById('splash');
+
+  setTimeout(() => {
+    giftBox.classList.add('open');
+    setTimeout(() => {
+      logoReveal.classList.add('show');
+      setTimeout(() => {
+        splash.style.opacity = '0';
+        splash.style.visibility = 'hidden';
+        setTimeout(typeText, 500);
+      }, 2300);
+    }, 600);
+  }, 1000);
+
+  generateProductCards();
+});
+
+// Typing Text Configuration
+const texts=[
+  "Thank You For Scanning ❤️",
+  "Welcome To HAPPY CONNECT 🎉",
+  "Let's Make Every Celebration Memorable 🥳",
+  "Happy Days Decors Welcomes You 😊"
+];
+let textIndex=0;
+let charIndex=0;
+let deleting=false;
+
+function typeText(){
+  const current=texts[textIndex];
+  if(!deleting){
+    document.getElementById("typing").innerHTML=current.substring(0,charIndex++);
+    if(charIndex>current.length){
+      deleting=true;
+      setTimeout(typeText,1500);
+      return;
+    }
+  }else{
+    document.getElementById("typing").innerHTML=current.substring(0,charIndex--);
+    if(charIndex==0){
+      deleting=false;
+      textIndex++;
+      if(textIndex>=texts.length){ textIndex=0; }
+    }
+  }
+  setTimeout(typeText,deleting?40:80);
+}
+
+// 25+ Interactive Custom Category Array Data Setup
+const eventItems = [
+  { title: "Grand Birthday Setup", cat: "Birthday", img: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=500" },
+  { title: "Elegant Balloon Arch", cat: "Birthday", img: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500" },
+  { title: "Silver Jubilee Celebration", cat: "Anniversary", img: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=500" },
+  { title: "Golden Anniversary Stage", cat: "Anniversary", img: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=500" },
+  { title: "Homecoming Baby Welcome", cat: "Baby welcome", img: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500" },
+  { title: "Cradle Ceremony Floral", cat: "Baby welcome", img: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500" },
+  { title: "Classic Pastel Baby Shower", cat: "Baby shower", img: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=500" },
+  { title: "Gender Reveal Backdrop", cat: "Baby shower", img: "https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=500" },
+  { title: "Convocation Stage Design", cat: "Graduations", img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500" },
+  { title: "Outdoor Graduation Party", cat: "Graduations", img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500" },
+  { title: "Neon Bride To Be Lounge", cat: "Bride to be", img: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500" },
+  { title: "Floral Bachelorette Theme", cat: "Bride to be", img: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=500" },
+  { title: "Mom & Dad Milestone Party", cat: "Parents special", img: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=500" },
+  { title: "Romantic Candlelight Set", cat: "Proposal", img: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=500" },
+  { title: "Marry Me Heart Backdrop", cat: "Proposal", img: "https://images.unsplash.com/photo-1529636798458-92182e65f766?w=500" },
+  { title: "Jungle Safari Kid Birthday", cat: "Theme birthday", img: "https://images.unsplash.com/photo-1533222481259-ce20eda1e20b?w=500" },
+  { title: "Space Astronaut Theme", cat: "Theme birthday", img: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=500" },
+  { title: "Annual Corporate Banquet", cat: "Corporate events", img: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=500" },
+  { title: "Premium Conference Stage", cat: "Corporate events", img: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=500" },
+  { title: "School Annual Day Entrance", cat: "Education", img: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500" },
+  { title: "Traditional Marigold Arch", cat: "Welcome arch", img: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=500" },
+  { title: "Modern Premium Balloon Gateway", cat: "Welcome arch", img: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=500" },
+  { title: "Grand Ribbon Cut Opening", cat: "New openings", img: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=500" },
+  { title: "Store Launch Floral Entrance", cat: "New openings", img: "https://images.unsplash.com/photo-1505232458627-a727266a704a?w=500" },
+  { title: "Magical Fairy Light Path", cat: "Anniversary", img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500" },
+  { title: "Princess Theme Birthday", cat: "Theme birthday", img: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=500" }
+];
+
+function generateProductCards() {
+  const container = document.getElementById('productsGrid');
+  container.innerHTML = '';
+  
+  eventItems.forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.setAttribute('data-category', item.cat);
+    card.setAttribute('data-title', item.title.toLowerCase());
+    
+    card.innerHTML = `
+      <img src="${item.img}" class="product-image" alt="${item.title}">
+      <div class="product-info">
+        <div>
+          <h3 class="product-title">${item.title}</h3>
+          <span class="product-tag">${item.cat}</span>
+        </div>
+        <button class="book-btn" onclick="openModal('${item.title}')">
+          <i class="fas fa-calendar-check"></i> Book Slot
+        </button>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// Search & Dropdown Multi-Filtering
+function filterEvents() {
+  const searchVal = document.getElementById('searchInput').value.toLowerCase();
+  const selectVal = document.getElementById('categorySelect').value;
+  const cards = document.querySelectorAll('.product-card');
+
+  cards.forEach(card => {
+    const cardCat = card.getAttribute('data-category');
+    const cardTitle = card.getAttribute('data-title');
+    
+    const matchSearch = cardTitle.includes(searchVal);
+    const matchSelect = (selectVal === 'all' || cardCat === selectVal);
+    
+    if(matchSearch && matchSelect) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// Modal Form Functional Systems
+function openModal(eventTitle) {
+  document.getElementById('eventSelectField').value = eventTitle;
+  document.getElementById('formContent').style.display = 'block';
+  document.getElementById('successMessage').style.display = 'none';
+  document.getElementById('bookingModal').classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('bookingModal').classList.remove('show');
+  document.getElementById('slotForm').reset();
+  document.getElementById('locationInputWrapper').style.display = 'none';
+}
+
+function syncWhatsApp() {
+  const isChecked = document.getElementById('sameAsWhatsapp').checked;
+  const contactField = document.getElementById('contactNum');
+  const whatsappField = document.getElementById('whatsappNum');
+  
+  if(isChecked) {
+    whatsappField.value = contactField.value;
+    whatsappField.readOnly = true;
+    whatsappField.style.background = "#f5f5f5";
+  } else {
+    whatsappField.readOnly = false;
+    whatsappField.style.background = "#ffffff";
+  }
+}
+
+function toggleMapLink() {
+  const dropdown = document.getElementById('locationType');
+  const wrapper = document.getElementById('locationInputWrapper');
+  const label = document.getElementById('locationLabel');
+  const input = document.getElementById('locationData');
+  
+  if(dropdown.value === 'manual') {
+    wrapper.style.display = 'block';
+    label.innerText = "Type Complete Event Venue Address *";
+    input.placeholder = "e.g. House No, Street, Landmark, City";
+    input.required = true;
+  } else if (dropdown.value === 'maps') {
+    wrapper.style.display = 'block';
+    label.innerText = "Paste Google Maps Link *";
+    input.placeholder = "https://maps.app.goo.gl/...";
+    input.required = true;
+  } else {
+    wrapper.style.display = 'none';
+    input.required = false;
+  }
+}
+
+function handleFormSubmit(e) {
+  e.preventDefault();
+  // Perform your backend workflow operations safely here if required
+  document.getElementById('formContent').style.display = 'none';
+  document.getElementById('successMessage').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
