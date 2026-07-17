@@ -402,7 +402,42 @@ font-size:19px;
 .banner-content p {
 font-size:14px;
 }
+  /* Animated Events Button Styles */
+.animated-events-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e6a100; /* Matching yellow emoji/conversation theme color */
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(230, 161, 0, 0.4);
+  margin: 20px 20px 10px auto; /* Aligns the button to the right side */
+  align-self: flex-end; /* Ensures alignment in flex containers */
+  animation: pulseBtn 2s infinite;
+  transition: transform 0.2s;
+}
 
+.animated-events-btn:hover {
+  transform: scale(1.05);
+  color: #fff;
+}
+
+@keyframes pulseBtn {
+  0% {
+    box-shadow: 0 0 0 0 rgba(230, 161, 0, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(230, 161, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(230, 161, 0, 0);
+  }
+}
+  
 }
 </style>
   
@@ -521,43 +556,9 @@ font-size:14px;
 
 </div>
   <!-- Animated Events Button -->
-<a href="events.html" class="animated-events-btn">
+<a href="#offersSlider" class="animated-events-btn">
   <i class="fas fa-calendar-alt"></i> Events
 </a>
-
-<style>
-.animated-events-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #e6a100; /* Matching yellow emoji theme colour */
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 8px 16px;
-  border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(230, 161, 0, 0.4);
-  margin: 20px auto 10px auto;
-  align-self: center;
-  animation: pulseBtn 2s infinite;
-  transition: transform 0.2s;
-}
-
-.animated-events-btn:hover {
-  transform: scale(1.05);
-}
-
-@keyframes pulseBtn {
-  0% {
-    box-shadow: 0 0 0 0 rgba(230, 161, 0, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(230, 161, 0, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(230, 161, 0, 0);
-  }
 
 <footer>
 
