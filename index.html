@@ -22,7 +22,7 @@ background:#ffffff;
 overflow-x:hidden;
 }
 
-/* Splash Screen & Gift Box Animation */
+/* Splash Screen & Gift Animation */
 
 #splash{
 position:fixed;
@@ -34,156 +34,86 @@ background:#fff;
 display:flex;
 justify-content:center;
 align-items:center;
+flex-direction:column;
 z-index:9999;
-opacity:1;
-visibility:visible;
-transition: opacity 0.8s ease, visibility 0.8s ease;
+animation:hideSplash 4.5s forwards;
 }
 
-.splash-content {
-position: relative;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-width: 300px;
-height: 300px;
-}
-
-/* Gift Box Design */
-.gift-box-container {
-position: absolute;
-width: 150px;
-height: 150px;
-cursor: pointer;
-animation: bounce 1s infinite alternate;
-z-index: 2;
-transition: transform 0.5s ease, opacity 0.5s ease;
+.splash-container {
+position:relative;
+display:flex;
+justify-content:center;
+align-items:center;
+width:200px;
+height:200px;
 }
 
 .gift-box {
-position: absolute;
-bottom: 0;
-left: 15px;
-width: 120px;
-height: 100px;
-background: #ff4d6d;
-border-radius: 0 0 10px 10px;
-box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+font-size:100px;
+position:absolute;
+z-index:2;
+transform-origin:bottom center;
+animation:giftBounceAndOpen 3.2s forwards;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
-.gift-box::before {
-content: '';
-position: absolute;
-left: 50%;
-transform: translateX(-50%);
-width: 24px;
-height: 100%;
-background: #ffd166;
+.splash-logo {
+width:150px;
+height:150px;
+border-radius:50%;
+object-fit:cover;
+box-shadow:0 12px 30px rgba(0,0,0,.2);
+position:absolute;
+z-index:1;
+opacity:0;
+transform:scale(0);
+animation:revealLogo 3.2s forwards;
 }
 
-.gift-lid {
-position: absolute;
-top: 38px;
-left: 7px;
-width: 136px;
-height: 25px;
-background: #ff3355;
-border-radius: 5px;
-z-index: 3;
-transform-origin: left bottom;
-transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+#splash h1 {
+font-size:32px;
+color:#ff4d6d;
+margin-top:20px;
+opacity:0;
+animation:fadeInText 1s forwards 2.5s;
 }
 
-.gift-lid::before {
-content: '';
-position: absolute;
-left: 50%;
-transform: translateX(-50%);
-width: 24px;
-height: 100%;
-background: #ffd166;
+@keyframes giftBounceAndOpen {
+0% { transform: translateY(0) scale(1); }
+15% { transform: translateY(-60px) scaleY(1.1) scaleX(0.9); }
+30% { transform: translateY(0) scaleY(0.9) scaleX(1.1); }
+45% { transform: translateY(-30px) scaleY(1.05) scaleX(0.95); }
+60% { transform: translateY(0) scale(1); }
+70% { transform: rotate(-10deg); }
+75% { transform: rotate(10deg); }
+80% { transform: rotate(-10deg); }
+85% { transform: scale(1.2); opacity: 1; }
+95% { transform: scale(0); opacity: 0; }
+100% { transform: scale(0); opacity: 0; visibility: hidden; }
 }
 
-/* Ribbon Bow */
-.bow {
-position: absolute;
-top: -20px;
-left: 50%;
-transform: translateX(-50%);
-width: 40px;
-height: 20px;
-display: flex;
-justify-content: space-between;
+@keyframes revealLogo {
+0%, 75% { opacity: 0; transform: scale(0) rotate(-180deg); }
+85% { opacity: 1; transform: scale(1.2) rotate(10deg); }
+95%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
 }
 
-.bow-left, .bow-right {
-width: 22px;
-height: 22px;
-background: #ffd166;
-border-radius: 50%;
-border: 3px solid #ff4d6d;
+@keyframes fadeInText {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
 }
 
-.bow-left {
-transform: rotate(-35deg) translate(3px, 2px);
+@keyframes hideSplash{
+0%, 90%{
+opacity:1;
+visibility:visible;
 }
-
-.bow-right {
-transform: rotate(35deg) translate(-3px, 2px);
+100%{
+opacity:0;
+visibility:hidden;
 }
-
-/* Revealed Logo Styling */
-.logo-reveal {
-position: absolute;
-transform: scale(0);
-opacity: 0;
-text-align: center;
-transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease;
-z-index: 1;
-}
-
-.logo-reveal img {
-width: 150px;
-height: 150px;
-border-radius: 50%;
-box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-object-fit: cover;
-margin-bottom: 15px;
-}
-
-.logo-reveal h1 {
-font-size: 28px;
-color: #ff4d6d;
-white-space: nowrap;
-}
-
-/* Splash Keyframe Animations */
-@keyframes bounce {
-0% { transform: translateY(0); }
-100% { transform: translateY(-15px); }
-}
-
-/* Active Animation States triggered via JS */
-.gift-box-container.open .gift-lid {
-transform: translate(-40px, -70px) rotate(-45deg);
-opacity: 0;
-}
-
-.gift-box-container.open .gift-box {
-transform: scale(0.8);
-opacity: 0;
-transition-delay: 0.2s;
-}
-
-.gift-box-container.open {
-pointer-events: none;
-animation: none;
-}
-
-.logo-reveal.show {
-transform: scale(1);
-opacity: 1;
 }
 
 /* Background Floating Emojis */
@@ -284,74 +214,113 @@ transform:scale(1);
 
 }
 
-/* Auto Scrollable Offers Carousel */
+/* Offers - Auto-scrollable Banner Carousel */
 
 .offers{
-margin:40px auto;
-max-width:1000px;
+margin:50px auto 20px;
+max-width:800px;
 width:100%;
-overflow: hidden;
-padding: 0 10px;
+padding:0 10px;
 }
 
 .offers h2{
 margin-bottom:20px;
 color:#ff4d6d;
+font-size:24px;
+text-align:center;
 }
 
-.offers-slider-wrapper {
-overflow: hidden;
-width: 100%;
-position: relative;
-border-radius: 18px;
-}
-
-.offers-slider {
-display: flex;
-gap: 20px;
-overflow-x: auto;
-scroll-behavior: smooth;
-scrollbar-width: none; /* Firefox */
-padding: 10px 5px;
-}
-
-.offers-slider::-webkit-scrollbar {
-display: none; /* Chrome/Safari */
-}
-
-.offer {
-flex: 0 0 280px;
-background:#fff;
-border-radius:18px;
-overflow:hidden;
-box-shadow:0 10px 25px rgba(0,0,0,.12);
-transition:.3s;
-}
-
-.offer:hover{
-transform:translateY(-5px);
-}
-
-.offer img{
+.banner-container {
+position:relative;
 width:100%;
-height:180px;
+overflow:hidden;
+border-radius:20px;
+box-shadow:0 12px 28px rgba(0,0,0,.15);
+background:#fff;
+}
+
+.banner-slider {
+display:flex;
+width:100%;
+transition:transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.banner-slide {
+min-width:100%;
+position:relative;
+height:320px;
+display:flex;
+align-items:flex-end;
+overflow:hidden;
+}
+
+.banner-slide img {
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
 object-fit:cover;
+z-index:1;
 }
 
-.offer h3{
-padding:12px;
-color:#ff4d6d;
-font-size: 18px;
+.banner-overlay {
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(to top, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.2) 70%);
+z-index:2;
 }
 
-.offer p{
-padding:0 12px 15px;
-color:#555;
-font-size:15px;
+.banner-content {
+position:relative;
+z-index:3;
+padding:25px;
+color:#fff;
+text-align:left;
+width:100%;
+}
+
+.banner-content h3 {
+font-size:24px;
+font-weight:700;
+margin-bottom:8px;
+text-shadow:1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.banner-content p {
+font-size:16px;
+opacity:0.95;
+font-weight:300;
+}
+
+/* Dots Navigation */
+
+.banner-dots {
+display:flex;
+justify-content:center;
+gap:8px;
+margin-top:15px;
+}
+
+.dot {
+width:10px;
+height:10px;
+border-radius:50%;
+background:#ccc;
+cursor:pointer;
+transition:background 0.3s, transform 0.3s;
+}
+
+.dot.active {
+background:#ff4d6d;
+transform:scale(1.2);
 }
 
 footer{
-margin-top:30px;
+margin-top:40px;
 padding:20px;
 text-align:center;
 color:#666;
@@ -375,8 +344,16 @@ width:100%;
 max-width:280px;
 }
 
-.offer {
-flex: 0 0 240px;
+.banner-slide {
+height:260px;
+}
+
+.banner-content h3 {
+font-size:19px;
+}
+
+.banner-content p {
+font-size:14px;
 }
 
 }
@@ -386,23 +363,12 @@ flex: 0 0 240px;
 
 <body>
 
-<!-- Interactive Gift Splash Screen -->
 <div id="splash">
-  <div class="splash-content">
-    <div class="gift-box-container" id="giftBoxContainer">
-      <div class="gift-lid">
-        <div class="bow">
-          <div class="bow-left"></div>
-          <div class="bow-right"></div>
-        </div>
-      </div>
-      <div class="gift-box"></div>
-    </div>
-    <div class="logo-reveal" id="logoReveal">
-      <img src="logo.png" alt="HAPPY CONNECT Logo">
-      <h1>HAPPY CONNECT</h1>
-    </div>
-  </div>
+<div class="splash-container">
+<div class="gift-box">🎁</div>
+<img src="logo.png" class="splash-logo">
+</div>
+<h1>🎉 HAPPY CONNECT 🎉</h1>
 </div>
 
 <div class="bg">
@@ -452,69 +418,53 @@ flex: 0 0 240px;
 
 </div>
 
-<!-- Auto Scrollable Banner Carousel -->
 <div class="offers">
 
 <h2>🎁 Special Offers</h2>
 
-<div class="offers-slider-wrapper">
-  <div class="offers-slider" id="offersSlider">
-  
-    <!-- Slide 1 -->
-    <div class="offer">
-      <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600" alt="">
-      <h3>Birthday Decoration</h3>
-      <p>Starting from ₹2,999</p>
-    </div>
-  
-    <!-- Slide 2 -->
-    <div class="offer">
-      <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600" alt="">
-      <h3>Wedding Decoration</h3>
-      <p>Flat 15% OFF</p>
-    </div>
-  
-    <!-- Slide 3 -->
-    <div class="offer">
-      <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=600" alt="">
-      <h3>Baby Shower</h3>
-      <p>Book Now & Get Free Welcome Board</p>
-    </div>
-  
-    <!-- Slide 4 -->
-    <div class="offer">
-      <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600" alt="">
-      <h3>Haldi & Mehendi</h3>
-      <p>Special Combo Offers Available</p>
-    </div>
-    
-    <!-- Cloned Slides for Seamless Loop -->
-    <div class="offer">
-      <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600" alt="">
-      <h3>Birthday Decoration</h3>
-      <p>Starting from ₹2,999</p>
-    </div>
-  
-    <div class="offer">
-      <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600" alt="">
-      <h3>Wedding Decoration</h3>
-      <p>Flat 15% OFF</p>
-    </div>
-  
-    <div class="offer">
-      <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=600" alt="">
-      <h3>Baby Shower</h3>
-      <p>Book Now & Get Free Welcome Board</p>
-    </div>
-  
-    <div class="offer">
-      <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600" alt="">
-      <h3>Haldi & Mehendi</h3>
-      <p>Special Combo Offers Available</p>
-    </div>
-  
-  </div>
+<div class="banner-container">
+<div class="banner-slider" id="bannerSlider">
+
+<div class="banner-slide">
+<img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800" alt="Birthday Decoration">
+<div class="banner-overlay"></div>
+<div class="banner-content">
+<h3>Birthday Decoration</h3>
+<p>Starting from ₹2,999</p>
 </div>
+</div>
+
+<div class="banner-slide">
+<img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800" alt="Wedding Decoration">
+<div class="banner-overlay"></div>
+<div class="banner-content">
+<h3>Wedding Decoration</h3>
+<p>Flat 15% OFF</p>
+</div>
+</div>
+
+<div class="banner-slide">
+<img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=800" alt="Baby Shower">
+<div class="banner-overlay"></div>
+<div class="banner-content">
+<h3>Baby Shower</h3>
+<p>Book Now & Get Free Welcome Board</p>
+</div>
+</div>
+
+<div class="banner-slide">
+<img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800" alt="Haldi & Mehendi">
+<div class="banner-overlay"></div>
+<div class="banner-content">
+<h3>Haldi & Mehendi</h3>
+<p>Special Combo Offers Available</p>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="banner-dots" id="bannerDots"></div>
 
 </div>
 
@@ -532,34 +482,6 @@ Designed by <b>Happy Days Decors</b>
 
 <script>
 
-// Gift Box Auto Reveal Timeline
-window.addEventListener('DOMContentLoaded', () => {
-  const giftBox = document.getElementById('giftBoxContainer');
-  const logoReveal = document.getElementById('logoReveal');
-  const splash = document.getElementById('splash');
-
-  // 1. Open the gift box automatically after 1 second
-  setTimeout(() => {
-    giftBox.classList.add('open');
-    
-    // 2. Reveal logo inside splash after lid flies open
-    setTimeout(() => {
-      logoReveal.classList.add('show');
-      
-      // 3. Slide up splash screen to reveal the website after 2.5 seconds
-      setTimeout(() => {
-        splash.style.opacity = '0';
-        splash.style.visibility = 'hidden';
-        
-        // Start typing effect on main site
-        setTimeout(typeText, 500);
-      }, 2500);
-      
-    }, 600);
-  }, 1000);
-});
-
-// Typing Effect
 const texts=[
 "Thank You For Scanning ❤️",
 "Welcome To HAPPY CONNECT 🎉",
@@ -613,33 +535,66 @@ setTimeout(typeText,deleting?40:80);
 
 }
 
-// Auto Scroll Offers Logic
-const slider = document.getElementById('offersSlider');
-let isMoving = true;
-let scrollSpeed = 1.2; 
+// Typing initiation matching splash delay
+setTimeout(typeText,4600);
 
-function autoScroll() {
-  if (isMoving) {
-    slider.scrollLeft += scrollSpeed;
-    // Infinite continuous wrapper scroll loop
-    if (slider.scrollLeft >= (slider.scrollWidth / 2) - 10) {
-      slider.scrollLeft = 0;
-    }
-  }
-  requestAnimationFrame(autoScroll);
+
+// Auto-Scrollable Banner Functionality
+const slider = document.getElementById('bannerSlider');
+const slides = document.querySelectorAll('.banner-slide');
+const dotsContainer = document.getElementById('bannerDots');
+let currentSlide = 0;
+const slideCount = slides.length;
+let slideInterval;
+
+// Generate dots dynamically
+slides.forEach((_, idx) => {
+const dot = document.createElement('div');
+dot.classList.add('dot');
+if (idx === 0) dot.classList.add('active');
+dot.addEventListener('click', () => {
+goToSlide(idx);
+resetInterval();
+});
+dotsContainer.appendChild(dot);
+});
+
+const dots = document.querySelectorAll('.dot');
+
+function updateDots() {
+dots.forEach((dot, idx) => {
+if (idx === currentSlide) {
+dot.classList.add('active');
+} else {
+dot.classList.remove('active');
+}
+});
 }
 
-// Start auto scroll once running
-requestAnimationFrame(autoScroll);
+function goToSlide(slideIdx) {
+currentSlide = slideIdx;
+slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+updateDots();
+}
 
-// Stop scrolling when hovering
-slider.addEventListener('mouseenter', () => isMoving = false);
-slider.addEventListener('mouseleave', () => isMoving = true);
-slider.addEventListener('touchstart', () => isMoving = false);
-slider.addEventListener('touchend', () => isMoving = true);
+function nextSlide() {
+currentSlide = (currentSlide + 1) % slideCount;
+goToSlide(currentSlide);
+}
+
+function startInterval() {
+slideInterval = setInterval(nextSlide, 3500); // Transitions slide every 3.5 seconds
+}
+
+function resetInterval() {
+clearInterval(slideInterval);
+startInterval();
+}
+
+// Initialize Slider
+startInterval();
 
 </script>
 
 </body>
 </html>
-  
