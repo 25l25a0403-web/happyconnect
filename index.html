@@ -150,6 +150,53 @@ justify-content:center;
 align-items:center;
 text-align:center;
 }
+/* Continuous Conversation Animation (Yellow Text) */
+.conversation-container {
+position: relative;
+height: 40px;
+width: 100%;
+max-width: 320px;
+margin-bottom: 15px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.conversation-container span {
+position: absolute;
+font-size: 18px;
+font-weight: 700;
+color: #e6a100; /* Rich gold/yellow for excellent visibility on white backgrounds */
+text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+text-transform: uppercase;
+letter-spacing: 1px;
+opacity: 0;
+pointer-events: none;
+animation: conversation-fade 6s infinite ease-in-out;
+}
+
+.conversation-container .text-one {
+animation-delay: 0s;
+}
+
+.conversation-container .text-two {
+animation-delay: 3s;
+}
+
+@keyframes conversation-fade {
+0% {
+opacity: 0;
+transform: translateY(10px);
+}
+5%, 45% {
+opacity: 1;
+transform: translateY(0);
+}
+50%, 100% {
+opacity: 0;
+transform: translateY(-10px);
+}
+}
 
 .logo{
 width:170px;
@@ -388,6 +435,11 @@ font-size:14px;
 </div>
 
 <section class="hero">
+<!-- Conversation Animation Banner At Top -->
+<div class="conversation-container">
+  <span class="text-one">Happy Connect</span>
+  <span class="text-two">Happy Days Decors</span>
+</div>
 
 <img src="logo.png" class="logo">
 
