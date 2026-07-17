@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAPPY CONNECT - DESK</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#ffffff;
+    color: #333;
+    overflow-x:hidden;
+}
+
+/* Background Emojis */
+.bg span{
+    position:fixed;
+    font-size:35px;
+    animation:float linear infinite;
+    opacity:.12;
+    user-select:none;
+    z-index:-1;
+}
+@keyframes float{
+    0%{ transform:translateY(110vh) rotate(0deg); }
+    100%{ transform:translateY(-120vh) rotate(360deg); }
+}
+
+/* Auth Portal */
+.auth-container {
+    max-width: 400px;
+    margin: 100px auto padding;
+    padding: 30px 20px;
+    text-align: center;
+}
+.auth-card {
+    background: #fff;
+    padding: 30px 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(230,161,0,0.15);
+    border: 1px solid rgba(230,161,0,0.2);
+}
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+.input-group label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #e6a100;
+}
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    outline: none;
+    font-size: 15px;
+    margin-top: 5px;
+    transition: 0.3s;
+}
+.input-group input:focus {
+    border-color: #e6a100;
+}
+
+/* Universal Button Styles */
+.btn-yellow {
+    background: #e6a100;
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(230,161,0,0.3);
+    width: 100%;
+}
+.btn-yellow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(230,161,0,0.4);
+}
+
+/* Dashboard App Layout */
+#dashboard {
+    display: none;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.desk-header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+.desk-header h1 {
+    color: #e6a100;
+    font-size: 28px;
+    font-weight: 700;
+}
+.logout-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/* Middle Logo & Stats Area */
+.hero-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 35px;
+}
+.logo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+.stats-container {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    max-width: 450px;
+}
+.stat-box {
+    flex: 1;
+    background: #fff;
+    border: 2px solid #e6a100;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(230,161,0,0.05);
+}
+.stat-box i {
+    font-size: 24px;
+    color: #e6a100;
+    margin-bottom: 5px;
+}
+.stat-box h3 {
+    font-size: 14px;
+    color: #666;
+    font-weight: 400;
+}
+.stat-box p {
+    font-size: 22px;
+    font-weight: 700;
+    color: #e6a100;
+}
+
+/* Action Central Operations Grid */
+.actions-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 450px;
+    margin: 0 auto 40px;
+}
+.action-card-btn {
+    background: #fff;
+    border: 1px solid rgba(230,161,0,0.3);
+    padding: 16px 20px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    transition: 0.2s;
+}
+.action-card-btn:hover {
+    border-color: #e6a100;
+    background: rgba(230,161,0,0.02);
+}
+.action-card-btn div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 600;
+    font-size: 16px;
+}
+.action-card-btn i.main-icon {
+    font-size: 20px;
+    color: #e6a100;
+}
+.action-card-btn i.arrow {
+    color: #ccc;
+}
+
+/* Floating Modals and Dialog Popups */
+.modal-overlay {
+    position: fixed;
+    top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 1000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.modal-window {
+    background: white;
+    width: 100%;
+    max-width: 480px;
+    border-radius: 20px;
+    padding: 25px;
+    position: relative;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #aaa;
+}
+.modal-window h2 {
+    color: #e6a100;
+    margin-bottom: 20px;
+    font-size: 20px;
+    border-bottom: 2px solid rgba(230,161,0,0.1);
+    padding-bottom: 10px;
+}
+
+/* Custom Component Views */
+.split-choice-box {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.split-choice-box button {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #e6a100;
+    background: transparent;
+    color: #e6a100;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.split-choice-box button.active {
+    background: #e6a100;
+    color: #fff;
+}
+
+/* Message Format Bookings List */
+.msg-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.msg-bubble {
+    background: #f9f9f9;
+    border-left: 4px solid #e6a100;
+    padding: 12px 15px;
+    border-radius: 0 12px 12px 0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.msg-bubble:hover {
+    background: #f1f1f1;
+}
+.msg-bubble h4 {
+    margin-bottom: 3px;
+    font-size: 15px;
+}
+.msg-bubble p {
+    font-size: 13px;
+    color: #666;
+}
+
+/* Dynamic Structured Invoice Receipt styling */
+.receipt {
+    border: 2px dashed #e6a100;
+    padding: 20px;
+    border-radius: 10px;
+    background: #ffffaf;
+    margin-bottom: 20px;
+}
+.receipt-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+.receipt-total {
+    border-top: 1px dashed #e6a100;
+    padding-top: 8px;
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+.receipt-ctas {
+    display: flex;
+    gap: 10px;
+}
+.receipt-ctas button, .receipt-ctas a {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+.btn-success { background: #25D366; color: white; }
+.btn-secondary { background: #333; color: white; }
+
+/* Dynamic List Items inside Modules */
+.data-list-item {
+    background: #fcfcfc;
+    border: 1px solid #eee;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* Native Form elements Styling */
+.form-element {
+    margin-bottom: 15px;
+}
+.form-element label {
+    font-size: 13px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+}
+.form-element input, .form-element select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+}
+.form-element input:focus, .form-element select:focus {
+    border-color: #e6a100;
+}
+
+/* Flash alerts popup banner */
+.success-banner {
+    display: none;
+    background: #25D366;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+footer{
+    margin-top: 60px;
+    padding: 20px;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+}
+</style>
+</head>
+<body>
+
+<div class="bg">
+    <span style="left:5%;animation-duration:12s;">😊</span>
+    <span style="left:20%;animation-duration:9s;">💼</span>
+    <span style="left:40%;animation-duration:13s;">📊</span>
+    <span style="left:60%;animation-duration:10s;">✨</span>
+    <span style="left:80%;animation-duration:14s;">🥳</span>
+    <span style="left:90%;animation-duration:11s;">💛</span>
+</div>
+
+<!-- ================= AUTH PORTAL ================= -->
+<section class="auth-container" id="authPortal">
+    <div class="auth-card">
+        <h2 style="color: #e6a100; margin-bottom: 5px;">👑 HAPPY CONNECT</h2>
+        <p style="font-size: 13px; color:#777; margin-bottom: 25px;">Management Access Desk Login</p>
+        
+        <div id="loginError" style="color: red; font-size: 13px; margin-bottom: 15px; display: none;">❌ Invalid Credentials!</div>
+        
+        <div class="input-group">
+            <label><i class="fa fa-user"></i> User ID</label>
+            <input type="text" id="username" placeholder="e.g. @HDDM2026">
+        </div>
+        
+        <div class="input-group">
+            <label><i class="fa fa-lock"></i> Password</label>
+            <input type="password" id="password" placeholder="••••••••">
+        </div>
+        
+        <button class="btn-yellow" onclick="handleLogin()">Authorize Login Key 🔑</button>
+    </div>
+</section>
+
+<!-- ================= CORE DESK APPLICATION ================= -->
+<section id="dashboard">
+    <div class="desk-header">
+        <h1 id="deskTitle">Event Managers Desk</h1>
+        <p style="font-size: 13px; color: #666;">Operational Overview Platform</p>
+        <button class="logout-btn" onclick="handleLogout()">Logout <i class="fa fa-sign-out"></i></button>
+    </div>
+
+    <!-- Center Graphic & Realtime System Counters -->
+    <div class="hero-center">
+        <img src="file_000000000d9c71fa9912d17d0800adf7.png" class="logo" alt="Happy Days Decors Logo">
+        
+        <div class="stats-container">
+            <div class="stat-box">
+                <i class="fa-solid fa-calendar-check"></i>
+                <h3>Today Orders</h3>
+                <p id="statToday">3</p>
+            </div>
+            <div class="stat-box">
+                <i class="fa-solid fa-boxes-packing"></i>
+                <h3>Total Orders</h3>
+                <p id="statTotal">142</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interface Operational Control Hub Grid -->
+    <div class="actions-grid">
+        <div class="action-card-btn" onclick="openModal('bookingsModal')">
+            <div><i class="fa-solid fa-envelope-open-text main-icon"></i> Today Bookings</div>
+            <i class="fa-solid fa-chevron-right arrow"></i>
+        </div>
+        
+        <div class="action-card-btn" onclick="openCalendarModal()">
+            <div><i class="fa-solid fa-calendar-days main-icon"></i> Customer Calendar Console</div>
+            <i class="fa-solid fa-chevron-right arrow"></i>
+        </div>
+        
+        <div class="action-card-btn" onclick="openRevenueModal()">
+            <div><i class="fa-solid fa-wallet main-icon"></i> Financial Revenue Metrics</div>
+            <i class="fa-solid fa-chevron-right arrow"></i>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 All Rights Reserved - <b>HAPPY CONNECT</b><br>
+        Designed Operational Systems by <b>Happy Days Decors</b>
+    </footer>
+</section>
+
+<!-- ================= MODAL OVERLAYS & CONTROLS ================= -->
+
+<!-- MODAL: BOOKINGS CONSOLE -->
+<div class="modal-overlay" id="bookingsModal">
+    <div class="modal-window">
+        <span class="modal-close" onclick="closeModal('bookingsModal')">&times;</span>
+        <h2>📩 Today Bookings Feed</h2>
+        
+        <!-- View 1: Message Layout Feed Container -->
+        <div id="bookingsListContainer" class="msg-container">
+            <!-- Dynamic Injection Points -->
+        </div>
+
+        <!-- View 2: Detailed Document Receipt Format -->
+        <div id="receiptContainer" style="display: none;">
+            <button class="btn-yellow" style="padding: 6px 12px; font-size: 12px; margin-bottom: 15px; width: auto;" onclick="backToBookingsList()"><i class="fa fa-arrow-left"></i> Back to Messages</button>
+            <div id="receiptContent"></div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: CALENDAR & REMINDERS -->
+<div class="modal-overlay" id="calendarModal">
+    <div class="modal-window">
+        <span class="modal-close" onclick="closeModal('calendarModal')">&times;</span>
+        <h2>📅 Customer Calendar Panel</h2>
+        
+        <div class="split-choice-box">
+            <button id="btnTabCal" class="active" onclick="switchCalendarTab('cal')"><i class="fa fa-calendar"></i> Calendar View</button>
+            <button id="btnTabAddCal" onclick="switchCalendarTab('add')"><i class="fa fa-plus"></i> Add Event</button>
+        </div>
+
+        <div id="calendarSuccessBanner" class="success-banner">🎉 Event Booked & Added Successfully!</div>
+
+        <!-- Sub-View: Calendar List Panel -->
+        <div id="tabCalendarView">
+            <div id="calendarListContainer">
+                <!-- Data injection -->
+            </div>
+        </div>
+
+        <!-- Sub-View: Interactive Entry Form Panel -->
+        <div id="tabCalendarAddForm" style="display: none;">
+            <form id="addEventForm" onsubmit="submitEventForm(event)">
+                <div class="form-element">
+                    <label>Customer Name</label>
+                    <input type="text" id="custName" required placeholder="John Doe">
+                </div>
+                <div class="form-element">
+                    <label>Contact Number</label>
+                    <input type="tel" id="custContact" required placeholder="919908180194">
+                </div>
+                <div class="form-element">
+                    <label>Event Target Date</label>
+                    <input type="date" id="custDate" required>
+                </div>
+                <div class="form-element">
+                    <label>Venue Location</label>
+                    <input type="text" id="custLoc" required placeholder="Proddatur Ground Venue">
+                </div>
+                <button type="submit" class="btn-yellow">Submit Secure Entry 💾</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: REVENUE MANAGEMENT SYSTEM -->
+<div class="modal-overlay" id="revenueModal">
+    <div class="modal-window">
+        <span class="modal-close" onclick="closeModal('revenueModal')">&times;</span>
+        <h2>💰 Revenue Matrix Control</h2>
+
+        <div class="split-choice-box">
+            <button id="btnTabRevData" class="active" onclick="switchRevenueTab('view')"><i class="fa fa-chart-line"></i> Revenue View</button>
+            <button id="btnTabRevAdd" onclick="switchRevenueTab('add')"><i class="fa fa-plus"></i> Add Revenue</button>
+        </div>
+
+        <div id="revenueSuccessBanner" class="success-banner">💰 Revenue Record Added Successfully!</div>
+
+        <!-- Sub-View: Filterable Matrix Data Grid Overview -->
+        <div id="tabRevenueView">
+            <div class="form-element" style="margin-bottom: 10px;">
+                <label>Quick Period Cycle</label>
+                <select id="revPeriodFilter" onchange="filterRevenueData()">
+                    <option value="today">Today's Transactions</option>
+                    <option value="weekly">Weekly Statements</option>
+                    <option value="monthly" selected>Monthly Ledgers</option>
+                    <option value="annual">Annual Balances</option>
+                </select>
+            </div>
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <div class="form-element" style="flex:1; margin-bottom:0;">
+                    <label>From Date</label>
+                    <input type="date" id="revDateFrom" onchange="filterRevenueData()">
+                </div>
+                <div class="form-element" style="flex:1; margin-bottom:0;">
+                    <label>To Date</label>
+                    <input type="date" id="revDateTo" onchange="filterRevenueData()">
+                </div>
+            </div>
+
+            <div style="font-weight:700; font-size:16px; margin-bottom:12px; color:#e6a100;">Total Evaluated: ₹<span id="aggregatedTotal">0</span></div>
+            <div id="revenueListContainer">
+                <!-- Transjected lists -->
+            </div>
+        </div>
+
+        <!-- Sub-View: Transaction Entry Form Panel -->
+        <div id="tabRevenueAddForm" style="display: none;">
+            <form id="addRevForm" onsubmit="submitRevenueForm(event)">
+                <div class="form-element">
+                    <label>Unique Transaction Code Identifier</label>
+                    <input type="text" id="revCode" required placeholder="TXN-HDD-901">
+                </div>
+                <div class="form-element">
+                    <label>Payment Entry Date</label>
+                    <input type="date" id="revDate" required>
+                </div>
+                <div class="form-element">
+                    <label>Event Type Assignment</label>
+                    <select id="revType" required>
+                        <option value="Wedding Decoration">Wedding Decoration</option>
+                        <option value="Birthday Decoration">Birthday Decoration</option>
+                        <option value="Baby Shower">Baby Shower</option>
+                        <option value="Haldi & Mehendi">Haldi & Mehendi</option>
+                    </select>
+                </div>
+                <div class="form-element">
+                    <label>Gross Amount Realized (₹)</label>
+                    <input type="number" id="revAmount" required placeholder="999">
+                </div>
+                <button type="submit" class="btn-yellow">Post Secure Transaction 💳</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ================= SYSTEM CORE LOGIC INTERNALS ================= -->
+<script>
+// Mock Memory Storage Variables Simulation Data Structure State Management
+let systemBookings = [
+    { id: 101, name: "Kalyan Kumar", phone: "919908180194", date: "2026-07-18", event: "Birthday Decoration", amount: 15000, location: "Proddatur", status: "Confirmed" },
+    { id: 102, name: "Suresh Raina", phone: "919908180194", date: "2026-07-18", event: "Wedding Decoration", amount: 75000, location: "YMR Colony Hall", status: "Partial Advance" },
+    { id: 103, name: "Anitha Reddy", phone: "919908180194", date: "2026-07-18", event: "Haldi & Mehendi", amount: 12000, location: "Home Setup, Proddatur", status: "Pending Balance" }
+];
+
+let systemRevenue = [
+    { code: "TXN-7711", date: "2026-07-18", type: "Birthday Decoration", amount: 15000 },
+    { code: "TXN-7712", date: "2026-07-18", type: "Wedding Decoration", amount: 35000 },
+    { code: "TXN-7690", date: "2026-07-10", type: "Baby Shower", amount: 9500 },
+    { code: "TXN-7541", date: "2026-06-15", type: "Haldi & Mehendi", amount: 22000 }
+];
+
+let loggedInUser = null;
+
+// Routing Authentication Handler
+function handleLogin() {
+    const userVal = document.getElementById("username").value.trim();
+    const passVal = document.getElementById("password").value.trim();
+    const errBanner = document.getElementById("loginError");
+
+    if(userVal === "@HDDM2026" && passVal === "MHDD@2026") {
+        loggedInUser = "Manager";
+        bootDashboard("Event Managers Desk");
+    } else if(userVal === "@HDDA2026" && passVal === "ADMINHDD@2026") {
+        loggedInUser = "Admin";
+        bootDashboard("Admin Desk");
+    } else {
+        errBanner.style.display = "block";
+    }
+}
+
+function bootDashboard(deskTitleName) {
+    document.getElementById("loginError").style.display = "none";
+    document.getElementById("authPortal").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+    document.getElementById("deskTitle").innerText = deskTitleName;
+    
+    // Auto sync dashboard widgets counts
+    document.getElementById("statToday").innerText = systemBookings.filter(b => b.date === "2026-07-18").length;
+    document.getElementById("statTotal").innerText = systemBookings.length + 139;
+    
+    buildBookingsFeed();
+}
+
+function handleLogout() {
+    loggedInUser = null;
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("authPortal").style.display = "block";
+}
+
+// Modal Toggle Window Functions
+function openModal(id) { document.getElementById(id).style.display = "flex"; }
+function closeModal(id) { document.getElementById(id).style.display = "none"; }
+
+// Dynamic Builders: Bookings & Message Format Receipts
+function buildBookingsFeed() {
+    const container = document.getElementById("bookingsListContainer");
+    container.innerHTML = "";
+    
+    systemBookings.forEach(booking => {
+        const bubble = document.createElement("div");
+        bubble.className = "msg-bubble";
+        bubble.onclick = () => showBookingReceipt(booking.id);
+        bubble.innerHTML = `
+            <h4>💬 Message Alert from ${booking.name}</h4>
+            <p>New Booking request detected for <b>${booking.event}</b> on date ${booking.date}. Click to process receipt billing information.</p>
+        `;
+        container.appendChild(bubble);
+    });
+}
+
+function showBookingReceipt(id) {
+    const booking = systemBookings.find(b => b.id === id);
+    if(!booking) return;
+
+    document.getElementById("bookingsListContainer").style.display = "none";
+    const receiptBox = document.getElementById("receiptContainer");
+    receiptBox.style.display = "block";
+
+    document.getElementById("receiptContent").innerHTML = `
+        <div class="receipt">
+            <h3 style="text-align:center; margin-bottom:15px; color:#e6a100;">🧾 TRANSACTION INVOICE RECEIPT</h3>
+            <div class="receipt-row"><span>Receipt ID:</span> <span>#HDD-2026-${booking.id}</span></div>
+            <div class="receipt-row"><span>Customer:</span> <span><b>${booking.name}</b></span></div>
+            <div class="receipt-row"><span>Contact:</span> <span>${booking.phone}</span></div>
+            <div class="receipt-row"><span>Date scheduled:</span> <span>${booking.date}</span></div>
+            <div class="receipt-row"><span>Location Space:</span> <span>${booking.location}</span></div>
+            <div class="receipt-row"><span>Assigned Event:</span> <span>${booking.event}</span></div>
+            <div class="receipt-row"><span>Status State:</span> <span>${booking.status}</span></div>
+            <div class="receipt-total"><span>Amount Liability</span> <span>₹${booking.amount}</span></div>
+        </div>
+        <div class="receipt-ctas">
+            <a href="https://wa.me/${booking.phone}?text=Hello%20${encodeURIComponent(booking.name)},%20Your%20booking%20for%20${encodeURIComponent(booking.event)}%20on%20${booking.date}%20is%20processed.%20Total:%20₹${booking.amount}." target="_blank" class="btn-success"><i class="fab fa-whatsapp"></i> Dispatch Ping</a>
+            <button class="btn-secondary" onclick="backToBookingsList()">Dismiss View</button>
+        </div>
+    `;
+}
+
+function backToBookingsList() {
+    document.getElementById("receiptContainer").style.display = "none";
+    document.getElementById("bookingsListContainer").style.display = "flex";
+}
+
+// Module: Calendar Views Management Sub-router
+function openCalendarModal() {
+    openModal('calendarModal');
+    switchCalendarTab('cal');
+}
+
+function switchCalendarTab(tabType) {
+    if(tabType === 'cal') {
+        document.getElementById("btnTabCal").classList.add("active");
+        document.getElementById("btnTabAddCal").classList.remove("active");
+        document.getElementById("tabCalendarView").style.display = "block";
+        document.getElementById("tabCalendarAddForm").style.display = "none";
+        renderCalendarDataRecords();
+    } else {
+        document.getElementById("btnTabCal").classList.remove("active");
+        document.getElementById("btnTabAddCal").classList.add("active");
+        document.getElementById("tabCalendarView").style.display = "none";
+        document.getElementById("tabCalendarAddForm").style.display = "block";
+    }
+}
+
+function renderCalendarDataRecords() {
+    const listCont = document.getElementById("calendarListContainer");
+    listCont.innerHTML = "";
+    
+    systemBookings.forEach(ev => {
+        const item = document.createElement("div");
+        item.className = "data-list-item";
+        item.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <strong>${ev.date}</strong> - ${ev.name}<br>
+                    <span style="font-size:12px; color:#666;">📌 ${ev.event} | Room: ${ev.location}</span>
+                </div>
+                <a href="https://wa.me/${ev.phone}?text=Hi%20${encodeURIComponent(ev.name)},%20this%20is%20a%20friendly%20reminder%20for%20your%20upcoming%20${encodeURIComponent(ev.event)}%20celebration%20on%20${ev.date}!%20-Happy%20Days%20Decors" target="_blank" style="background:#25D366; color:white; padding:6px 10px; border-radius:8px; font-size:12px; text-decoration:none;"><i class="fab fa-whatsapp"></i> Alert</a>
+            </div>
+        `;
+        listCont.appendChild(item);
+    });
+}
+
+function submitEventForm(e) {
+    e.preventDefault();
+    const newEv = {
+        id: Date.now(),
+        name: document.getElementById("custName").value,
+        phone: document.getElementById("custContact").value,
+        date: document.getElementById("custDate").value,
+        location: document.getElementById("custLoc").value,
+        event: "Custom Event Service Package",
+        amount: 5000,
+        status: "Active Calendar Entry"
+    };
+
+    systemBookings.push(newEv);
+    document.getElementById("addEventForm").reset();
+    
+    // Trigger Success notification Banner
+    const banner = document.getElementById("calendarSuccessBanner");
+    banner.style.display = "block";
+    setTimeout(() => { banner.style.display = "none"; switchCalendarTab('cal'); }, 1500);
+    
+    // Sync counts indicators
+    bootDashboard(loggedInUser === "Admin" ? "Admin Desk" : "Event Managers Desk");
+}
+
+// Module: Revenue Metric Architecture Framework
+function openRevenueModal() {
+    openModal('revenueModal');
+    switchRevenueTab('view');
+}
+
+function switchRevenueTab(mode) {
+    if(mode === 'view') {
+        document.getElementById("btnTabRevData").classList.add("active");
+        document.getElementById("btnTabRevAdd").classList.remove("active");
+        document.getElementById("tabRevenueView").style.display = "block";
+        document.getElementById("tabRevenueAddForm").style.display = "none";
+        filterRevenueData();
+    } else {
+        document.getElementById("btnTabRevData").classList.remove("active");
+        document.getElementById("btnTabRevAdd").classList.add("active");
+        document.getElementById("tabRevenueView").style.display = "none";
+        document.getElementById("tabRevenueAddForm").style.display = "block";
+    }
+}
+
+function filterRevenueData() {
+    const cycle = document.getElementById("revPeriodFilter").value;
+    const fromVal = document.getElementById("revDateFrom").value;
+    const toVal = document.getElementById("revDateTo").value;
+    
+    let filtered = [...systemRevenue];
+
+    // Filter by specific manual explicit ranges if present
+    if (fromVal || toVal) {
+        if(fromVal) filtered = filtered.filter(r => r.date >= fromVal);
+        if(toVal) filtered = filtered.filter(r => r.date <= toVal);
+    } else {
+        // Fallback processing using contextual mock anchor limits
+        const anchorDateStr = "2026-07-18";
+        if(cycle === "today") {
+            filtered = filtered.filter(r => r.date === anchorDateStr);
+        } else if(cycle === "weekly") {
+            filtered = filtered.filter(r => r.date >= "2026-07-12" && r.date <= "2026-07-18");
+        } else if(cycle === "monthly") {
+            filtered = filtered.filter(r => r.date >= "2026-07-01" && r.date <= "2026-07-31");
+        } else if(cycle === "annual") {
+            filtered = filtered.filter(r => r.date.startsWith("2026"));
+        }
+    }
+
+    // Calculations aggregation output
+    let aggregateSum = filtered.reduce((total, element) => total + parseInt(element.amount), 0);
+    document.getElementById("aggregatedTotal").innerText = aggregateSum.toLocaleString('en-IN');
+
+    // Build lists view
+    const listCont = document.getElementById("revenueListContainer");
+    listCont.innerHTML = "";
+    
+    if(filtered.length === 0) {
+        listCont.innerHTML = `<p style="text-align:center; font-size:13px; color:#999; padding:20px;">No historical payments logged inside selection criteria.</p>`;
+        return;
+    }
+
+    filtered.forEach(rev => {
+        const item = document.createElement("div");
+        item.className = "data-list-item";
+        item.style.borderLeft = "4px solid #25D366";
+        item.innerHTML = `
+            <div style="display:flex; justify-content:between; align-items:center; width:100%;">
+                <div style="flex:1;">
+                    <strong>${rev.code}</strong> <small style="color:#777;">(${rev.date})</small><br>
+                    <span style="font-size:12px; color:#666;">Type: ${rev.type}</span>
+                </div>
+                <div style="font-weight:700; color:#25D366; font-size:15px;">+ ₹${rev.amount}</div>
+            </div>
+        `;
+        listCont.appendChild(item);
+    });
+}
+
+function submitRevenueForm(e) {
+    e.preventDefault();
+    const newRev = {
+        code: document.getElementById("revCode").value,
+        date: document.getElementById("revDate").value,
+        type: document.getElementById("revType").value,
+        amount: parseInt(document.getElementById("revAmount").value)
+    };
+
+    systemRevenue.unshift(newRev);
+    document.getElementById("addRevForm").reset();
+
+    const banner = document.getElementById("revenueSuccessBanner");
+    banner.style.display = "block";
+    setTimeout(() => { banner.style.display = "none"; switchRevenueTab('view'); }, 1500);
+}
+</script>
+</body>
+</html>
