@@ -873,5 +873,39 @@ function submitRevenueForm(e) {
     setTimeout(() => { banner.style.display = "none"; switchRevenueTab('view'); }, 1500);
 }
 </script>
+    <script>
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyYOhE9KtvYy5sfAj1RriBHFF1sthdYYORvPqUDOqi9ol91-B42aexRJRYPpNHeioQF/exec";
+
+function loadDataFromGoogleSheets() {
+  fetch(`${WEB_APP_URL}?action=getAllData`)
+    .then(response => response.json())
+    .then(res => {
+      if (res.status === "success") {
+        // Map Google Sheet objects directly back into the live local view state arrays
+        systemBookings = res.data.bookings.map(b => ({
+          id: b.id,
+          name: b.name || b.customername,
+          phone: b.phone || b.contactnumber,
+          date: b.date || b.eventtargetdate,
+          event: b.event || b.eventtype,
+          amount: Number(b.amount || b.grossamountrealized || 0),
+          location: b.location || b.venuelocation,
+          status: b.status || "Confirmed"
+        }));
+
+        systemRevenue = res.data.revenue.map(r => ({
+          code: r.transactioncode || r.code,
+          date: r.paymententrydate || r.date,
+          type: r.eventtypeassignment || r.type,
+          amount: Number(r.grossamountrealized || r.amount || 0)
+        }));
+
+        // Refresh UI dashboard counters and render elements
+        bootDashboard(loggedInUser === "Admin" ? "Admin Desk" : "Event Managers Desk");
+      }
+    });
+}
+        
+    </script>
 </body>
 </html>
