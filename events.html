@@ -896,6 +896,30 @@ slider.addEventListener('mouseleave', () => isMoving = true);
 slider.addEventListener('touchstart', () => isMoving = false);
 slider.addEventListener('touchend', () => isMoving = true);
 </script>
+  <script>
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyYOhE9KtvYy5sfAj1RriBHFF1sthdYYORvPqUDOqi9ol91-B42aexRJRYPpNHeioQF/exec";
+
+function submitCustomerBooking(eventData) {
+  fetch(WEB_APP_URL, {
+    method: "POST",
+    mode: "no-cors", // Permits quiet cross-origin pipeline submission
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      action: "addCustomerBooking",
+      payload: {
+        name: eventData.name,
+        phone: eventData.phone,
+        date: eventData.date,
+        location: eventData.location,
+        event: eventData.eventType,
+        amount: eventData.price || 999,
+        status: "Pending Approval"
+      }
+    })
+  })
+  .then(() => alert("Booking Submitted to Management Data Stream!"));
+}
+  </script>
 
 </body>
 </html>
