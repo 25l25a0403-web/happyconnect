@@ -513,7 +513,7 @@ background: #fafafa;
   <span style="left:25%;animation-duration:11s;">🥳</span>
   <span style="left:35%;animation-duration:13s;">🎉</span>
   <span style="left:45%;animation-duration:8s;">🎈</span>
-  <span style="left:55%;animation-duration:10s;">😁</span>
+  <span style="left:55%;animation-duration:100ms;">😁</span>
   <span style="left:65%;animation-duration:14s;">🎊</span>
   <span style="left:75%;animation-duration:9s;">😊</span>
   <span style="left:85%;animation-duration:12s;">🎈</span>
@@ -527,16 +527,16 @@ background: #fafafa;
     <span class="text-two">Happy Days Decors</span>
   </div>
 
-  <img src="logo.png" class="logo">
+  <img src="file_000000000d9c71fa9912d17d0800adf7.png" class="logo">
 
   <div class="stats-container">
     <div class="stat-item">
       <i class="fab fa-instagram"></i>
-      <span>15K+ Followers</span>
+      <span>0 Followers</span>
     </div>
     <div class="stat-item">
       <i class="fas fa-users"></i>
-      <span>2.5K+ Customers</span>
+      <span>0 Customers</span>
     </div>
   </div>
 
@@ -666,7 +666,7 @@ background: #fafafa;
     <div class="success-message" id="successMsg">
       <i class="fas fa-check-circle"></i>
       <h3>Slot Booked Successfully!</h3>
-      <p>Your request has been filed under catalog token reference details.</p>
+      <p>Redirecting your structural details to WhatsApp...</p>
       <br>
       <p style="font-weight: 700; color: var(--emoji-yellow);">Happy Days Decors</p>
     </div>
@@ -696,7 +696,7 @@ const sampleImages = {
   "new openings": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=500"
 };
 
-// 26 Comprehensive Product Data Mappings containing unique prices and item codes
+// Comprehensive Product Data Mappings
 const eventProducts = [
   { id: 1, code: "HDD-B01", title: "Grand Royal Balloon Arch Setup", category: "birthday", price: "₹4,999" },
   { id: 2, code: "HDD-A02", title: "Elegant Rose Gold Anniversary Stage", category: "anniversary", price: "₹8,500" },
@@ -833,10 +833,51 @@ function openBookingModal(title, code, price) {
 closeModalBtn.addEventListener('click', () => modal.classList.remove('active'));
 modal.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
 
+// Form submission handler redirecting fields to WhatsApp
 bookingForm.addEventListener('submit', (e) => {
   e.preventDefault();
+  
+  // Capture values
+  const name = document.getElementById('userName').value;
+  const contact = document.getElementById('userContact').value;
+  const whatsappNum = document.getElementById('userWhatsapp').value;
+  const datetime = document.getElementById('eventDateTime').value;
+  const region = document.getElementById('userRegion').value;
+  const address = document.getElementById('userAddress').value;
+  
+  const setupTitle = document.getElementById('hiddenTitle').value;
+  const setupCode = document.getElementById('hiddenCode').value;
+  const setupPrice = document.getElementById('hiddenPrice').value;
+  
+  // Format message structure cleanly
+  const whatsappMessage = `*NEW SLOT BOOKING REQUEST* 🎉\n` +
+                          `----------------------------------\n` +
+                          `*👤 Name:* ${name}\n` +
+                          `*📞 Contact:* ${contact}\n` +
+                          `*💬 WhatsApp:* ${whatsappNum}\n` +
+                          `*📍 Region:* ${region}\n` +
+                          `*🏠 Address:* ${address}\n\n` +
+                          `*✨ EVENT DETAILS*:\n` +
+                          `*📅 Date/Time:* ${datetime}\n` +
+                          `*📦 Setup:* ${setupTitle}\n` +
+                          `*🔢 Code:* ${setupCode}\n` +
+                          `*💰 Price:* ${setupPrice}\n` +
+                          `----------------------------------\n` +
+                          `Sent via Happy Connect.`;
+
+  // Change phone below to your dynamic business number if required
+  const targetBusinessNumber = "918125727668"; 
+  const cleanMessage = encodeURIComponent(whatsappMessage);
+  const whatsappUrl = `https://wa.me/${targetBusinessNumber}?text=${cleanMessage}`;
+
+  // Update UI architecture state 
   bookingForm.style.display = "none";
   successMessageBox.style.display = "block";
+  
+  // Trigger modern immediate processing execution
+  setTimeout(() => {
+    window.open(whatsappUrl, '_blank');
+  }, 800);
 });
 
 // Instant Start Framework Configuration
@@ -896,30 +937,6 @@ slider.addEventListener('mouseleave', () => isMoving = true);
 slider.addEventListener('touchstart', () => isMoving = false);
 slider.addEventListener('touchend', () => isMoving = true);
 </script>
-  <script>
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzlm5LYPzEQ4LjBKOx11YWjfxelOtGsmjeX8Tw6BVNWqjUQoJguExr6pTIyWORq8-JT/exec";
-
-function submitCustomerBooking(eventData) {
-  fetch(WEB_APP_URL, {
-    method: "POST",
-    mode: "no-cors", // Permits quiet cross-origin pipeline submission
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      action: "addCustomerBooking",
-      payload: {
-        name: eventData.name,
-        phone: eventData.phone,
-        date: eventData.date,
-        location: eventData.location,
-        event: eventData.eventType,
-        amount: eventData.price || 999,
-        status: "Pending Approval"
-      }
-    })
-  })
-  .then(() => alert("Booking Submitted to Management Data Stream!"));
-}
-  </script>
 
 </body>
 </html>
