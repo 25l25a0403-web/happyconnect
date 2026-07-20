@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HAPPY CONNECT - DESK</title>
+<title>HAPPY CONNECT - ADMIN DESK</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
@@ -22,7 +22,7 @@ body{
     overflow-x:hidden;
 }
 
-/* Background Emojis */
+/* Background Animations */
 .bg span{
     position:fixed;
     font-size:35px;
@@ -39,8 +39,8 @@ body{
 /* Auth Portal */
 .auth-container {
     max-width: 400px;
-    margin: 100px auto padding;
-    padding: 30px 20px;
+    margin: 80px auto;
+    padding: 20px;
     text-align: center;
 }
 .auth-card {
@@ -73,7 +73,7 @@ body{
     border-color: #e6a100;
 }
 
-/* Universal Button Styles */
+/* Buttons */
 .btn-yellow {
     background: #e6a100;
     color: #fff;
@@ -92,16 +92,16 @@ body{
     box-shadow: 0 7px 20px rgba(230,161,0,0.4);
 }
 
-/* Dashboard App Layout */
+/* Core Dashboard Layout */
 #dashboard {
     display: none;
-    max-width: 800px;
+    max-width: 850px;
     margin: 0 auto;
     padding: 20px;
 }
 .desk-header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     position: relative;
 }
 .desk-header h1 {
@@ -122,16 +122,16 @@ body{
     font-size: 12px;
 }
 
-/* Middle Logo & Stats Area */
+/* Stats Section */
 .hero-center {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 .logo {
-    width: 140px;
-    height: 140px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -139,9 +139,9 @@ body{
 }
 .stats-container {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     width: 100%;
-    max-width: 450px;
+    max-width: 650px;
 }
 .stat-box {
     flex: 1;
@@ -153,27 +153,27 @@ body{
     box-shadow: 0 5px 15px rgba(230,161,0,0.05);
 }
 .stat-box i {
-    font-size: 24px;
+    font-size: 22px;
     color: #e6a100;
     margin-bottom: 5px;
 }
 .stat-box h3 {
-    font-size: 14px;
+    font-size: 13px;
     color: #666;
-    font-weight: 400;
+    font-weight: 500;
 }
 .stat-box p {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     color: #e6a100;
 }
 
-/* Action Central Operations Grid */
+/* Operational Module Grid */
 .actions-grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 15px;
-    max-width: 450px;
+    max-width: 650px;
     margin: 0 auto 40px;
 }
 .action-card-btn {
@@ -195,19 +195,19 @@ body{
 .action-card-btn div {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 15px;
 }
 .action-card-btn i.main-icon {
-    font-size: 20px;
+    font-size: 18px;
     color: #e6a100;
 }
 .action-card-btn i.arrow {
     color: #ccc;
 }
 
-/* Floating Modals and Dialog Popups */
+/* Modals */
 .modal-overlay {
     position: fixed;
     top:0; left:0; width:100%; height:100%;
@@ -221,7 +221,7 @@ body{
 .modal-window {
     background: white;
     width: 100%;
-    max-width: 480px;
+    max-width: 500px;
     border-radius: 20px;
     padding: 25px;
     position: relative;
@@ -245,59 +245,51 @@ body{
     padding-bottom: 10px;
 }
 
-/* Custom Component Views */
-.split-choice-box {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
+/* Forms & UI Helpers */
+.form-element {
+    margin-bottom: 15px;
 }
-.split-choice-box button {
-    flex: 1;
-    padding: 12px;
-    border: 2px solid #e6a100;
-    background: transparent;
-    color: #e6a100;
-    border-radius: 12px;
-    font-weight: 600;
-    cursor: pointer;
-}
-.split-choice-box button.active {
-    background: #e6a100;
-    color: #fff;
-}
-
-/* Message Format Bookings List */
-.msg-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-.msg-bubble {
-    background: #f9f9f9;
-    border-left: 4px solid #e6a100;
-    padding: 12px 15px;
-    border-radius: 0 12px 12px 0;
-    cursor: pointer;
-    transition: 0.2s;
-}
-.msg-bubble:hover {
-    background: #f1f1f1;
-}
-.msg-bubble h4 {
-    margin-bottom: 3px;
-    font-size: 15px;
-}
-.msg-bubble p {
+.form-element label {
     font-size: 13px;
-    color: #666;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+}
+.form-element input, .form-element select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+}
+.form-element input:focus, .form-element select:focus {
+    border-color: #e6a100;
+}
+.data-list-item {
+    background: #fcfcfc;
+    border: 1px solid #eee;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.success-banner {
+    display: none;
+    background: #25D366;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 15px;
 }
 
-/* Dynamic Structured Invoice Receipt styling */
+/* Invoice Container */
 .receipt {
     border: 2px dashed #e6a100;
     padding: 20px;
     border-radius: 10px;
-    background: #ffffaf;
+    background: #fffdf5;
     margin-bottom: 20px;
 }
 .receipt-row {
@@ -324,64 +316,21 @@ body{
     padding: 10px;
     border-radius: 8px;
     border: none;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
 }
-.btn-success { background: #25D366; color: white; }
+.btn-whatsapp { background: #25D366; color: white; }
 .btn-secondary { background: #333; color: white; }
 
-/* Dynamic List Items inside Modules */
-.data-list-item {
-    background: #fcfcfc;
-    border: 1px solid #eee;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    font-size: 14px;
-}
-
-/* Native Form elements Styling */
-.form-element {
-    margin-bottom: 15px;
-}
-.form-element label {
-    font-size: 13px;
-    font-weight: 600;
-    display: block;
-    margin-bottom: 4px;
-}
-.form-element input, .form-element select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    outline: none;
-}
-.form-element input:focus, .form-element select:focus {
-    border-color: #e6a100;
-}
-
-/* Flash alerts popup banner */
-.success-banner {
-    display: none;
-    background: #25D366;
-    color: white;
-    padding: 12px;
-    border-radius: 8px;
-    text-align: center;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
 footer{
-    margin-top: 60px;
+    margin-top: 40px;
     padding: 20px;
     text-align: center;
     color: #666;
-    font-size: 14px;
+    font-size: 13px;
 }
 </style>
 </head>
@@ -396,17 +345,17 @@ footer{
     <span style="left:90%;animation-duration:11s;">💛</span>
 </div>
 
-<!-- ================= AUTH PORTAL ================= -->
+<!-- ================= AUTHENTICATION PORTAL ================= -->
 <section class="auth-container" id="authPortal">
     <div class="auth-card">
         <h2 style="color: #e6a100; margin-bottom: 5px;">👑 HAPPY CONNECT</h2>
-        <p style="font-size: 13px; color:#777; margin-bottom: 25px;">Management Access Desk Login</p>
+        <p style="font-size: 13px; color:#777; margin-bottom: 25px;">Admin Desk Portal</p>
         
-        <div id="loginError" style="color: red; font-size: 13px; margin-bottom: 15px; display: none;">❌ Invalid Credentials!</div>
+        <div id="loginError" style="color: red; font-size: 13px; margin-bottom: 15px; display: none;">❌ Invalid Access Credentials!</div>
         
         <div class="input-group">
             <label><i class="fa fa-user"></i> User ID</label>
-            <input type="text" id="username" placeholder="e.g. @HDDM2026">
+            <input type="text" id="username" placeholder="e.g. @HDDA2026">
         </div>
         
         <div class="input-group">
@@ -414,498 +363,516 @@ footer{
             <input type="password" id="password" placeholder="••••••••">
         </div>
         
-        <button class="btn-yellow" onclick="handleLogin()">Authorize Login Key 🔑</button>
+        <button class="btn-yellow" onclick="handleLogin()">Login to Dashboard 🔑</button>
     </div>
 </section>
 
 <!-- ================= CORE DESK APPLICATION ================= -->
 <section id="dashboard">
     <div class="desk-header">
-        <h1 id="deskTitle">Event Managers Desk</h1>
-        <p style="font-size: 13px; color: #666;">Operational Overview Platform</p>
+        <h1 id="deskTitle">Admin Control Desk</h1>
+        <p style="font-size: 13px; color: #666;">Event Operations & Financial Workspace</p>
         <button class="logout-btn" onclick="handleLogout()">Logout <i class="fa fa-sign-out"></i></button>
     </div>
 
-    <!-- Center Graphic & Realtime System Counters -->
+    <!-- Automatic System Counters -->
     <div class="hero-center">
         <img src="file_000000000d9c71fa9912d17d0800adf7.png" class="logo" alt="Happy Days Decors Logo">
         
         <div class="stats-container">
             <div class="stat-box">
-                <i class="fa-solid fa-calendar-check"></i>
-                <h3>Today Orders</h3>
-                <p id="statToday">3</p>
+                <i class="fa-solid fa-calendar-day"></i>
+                <h3>Today's Events</h3>
+                <p id="statToday">0</p>
             </div>
             <div class="stat-box">
-                <i class="fa-solid fa-boxes-packing"></i>
-                <h3>Total Orders</h3>
-                <p id="statTotal">142</p>
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Net Profit</h3>
+                <p id="statNetProfit">₹0</p>
+            </div>
+            <div class="stat-box">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <h3>Total Bookings</h3>
+                <p id="statTotalBookings">0</p>
             </div>
         </div>
     </div>
 
-    <!-- Interface Operational Control Hub Grid -->
+    <!-- Operations Grid -->
     <div class="actions-grid">
-        <div class="action-card-btn" onclick="openModal('bookingsModal')">
-            <div><i class="fa-solid fa-envelope-open-text main-icon"></i> Today Bookings</div>
+        <div class="action-card-btn" onclick="openModal('newBookingModal')">
+            <div><i class="fa-solid fa-calendar-plus main-icon"></i> New Booking Creation</div>
             <i class="fa-solid fa-chevron-right arrow"></i>
         </div>
-        
-        <div class="action-card-btn" onclick="openCalendarModal()">
-            <div><i class="fa-solid fa-calendar-days main-icon"></i> Customer Calendar Console</div>
+
+        <div class="action-card-btn" onclick="openModal('calendarModal')">
+            <div><i class="fa-solid fa-calendar-days main-icon"></i> Calendar View (Auto)</div>
             <i class="fa-solid fa-chevron-right arrow"></i>
         </div>
-        
-        <div class="action-card-btn" onclick="openRevenueModal()">
-            <div><i class="fa-solid fa-wallet main-icon"></i> Financial Revenue Metrics</div>
+
+        <div class="action-card-btn" onclick="openModal('invoiceModal')">
+            <div><i class="fa-solid fa-file-invoice-dollar main-icon"></i> Instant Invoice & Share</div>
+            <i class="fa-solid fa-chevron-right arrow"></i>
+        </div>
+
+        <div class="action-card-btn" onclick="openModal('discountModal')">
+            <div><i class="fa-brands fa-instagram main-icon"></i> Instagram Discount (5%)</div>
+            <i class="fa-solid fa-chevron-right arrow"></i>
+        </div>
+
+        <div class="action-card-btn" onclick="openModal('referralModal')">
+            <div><i class="fa-solid fa-handshake main-icon"></i> Refer & Earn (5%)</div>
+            <i class="fa-solid fa-chevron-right arrow"></i>
+        </div>
+
+        <div class="action-card-btn" onclick="openModal('expenseModal')">
+            <div><i class="fa-solid fa-receipt main-icon"></i> Expense Tracker</div>
+            <i class="fa-solid fa-chevron-right arrow"></i>
+        </div>
+
+        <div class="action-card-btn" onclick="openModal('stockModal')">
+            <div><i class="fa-solid fa-warehouse main-icon"></i> Material Stock Record</div>
+            <i class="fa-solid fa-chevron-right arrow"></i>
+        </div>
+
+        <div class="action-card-btn" onclick="openModal('alertsModal')">
+            <div><i class="fa-solid fa-bell main-icon"></i> System Alerts</div>
             <i class="fa-solid fa-chevron-right arrow"></i>
         </div>
     </div>
 
     <footer>
         © 2026 All Rights Reserved - <b>HAPPY CONNECT</b><br>
-        Designed Operational Systems by <b>Happy Days Decors</b>
+        Operational Architecture by <b>Happy Days Decors</b>
     </footer>
 </section>
 
-<!-- ================= MODAL OVERLAYS & CONTROLS ================= -->
+<!-- ================= MODALS ================= -->
 
-<!-- MODAL: BOOKINGS CONSOLE -->
-<div class="modal-overlay" id="bookingsModal">
+<!-- MODAL: NEW BOOKING CREATION -->
+<div class="modal-overlay" id="newBookingModal">
     <div class="modal-window">
-        <span class="modal-close" onclick="closeModal('bookingsModal')">&times;</span>
-        <h2>📩 Today Bookings Feed</h2>
-        
-        <!-- View 1: Message Layout Feed Container -->
-        <div id="bookingsListContainer" class="msg-container">
-            <!-- Dynamic Injection Points -->
-        </div>
-
-        <!-- View 2: Detailed Document Receipt Format -->
-        <div id="receiptContainer" style="display: none;">
-            <button class="btn-yellow" style="padding: 6px 12px; font-size: 12px; margin-bottom: 15px; width: auto;" onclick="backToBookingsList()"><i class="fa fa-arrow-left"></i> Back to Messages</button>
-            <div id="receiptContent"></div>
-        </div>
+        <span class="modal-close" onclick="closeModal('newBookingModal')">&times;</span>
+        <h2>✍️ New Booking Entry</h2>
+        <div id="bookingSuccessBanner" class="success-banner">🎉 Booking Created & Calendar Updated!</div>
+        <form onsubmit="submitNewBooking(event)">
+            <div class="form-element">
+                <label>Customer Name</label>
+                <input type="text" id="bookName" required placeholder="John Doe">
+            </div>
+            <div class="form-element">
+                <label>Phone Number (WhatsApp)</label>
+                <input type="tel" id="bookPhone" required placeholder="919908180194">
+            </div>
+            <div class="form-element">
+                <label>Event Type</label>
+                <select id="bookType" required>
+                    <option value="Birthday Decoration">Birthday Decoration</option>
+                    <option value="Wedding Decoration">Wedding Decoration</option>
+                    <option value="Baby Shower">Baby Shower</option>
+                    <option value="Haldi & Mehendi">Haldi & Mehendi</option>
+                </select>
+            </div>
+            <div class="form-element">
+                <label>Event Date</label>
+                <input type="date" id="bookDate" required>
+            </div>
+            <div class="form-element">
+                <label>Venue Location</label>
+                <input type="text" id="bookLoc" required placeholder="Proddatur Ground Venue">
+            </div>
+            <div class="form-element">
+                <label>Package Amount (₹)</label>
+                <input type="number" id="bookAmount" required placeholder="999">
+            </div>
+            <button type="submit" class="btn-yellow">Create Booking 💾</button>
+        </form>
     </div>
 </div>
 
-<!-- MODAL: CALENDAR & REMINDERS -->
+<!-- MODAL: CALENDAR VIEW (AUTOMATIC) -->
 <div class="modal-overlay" id="calendarModal">
     <div class="modal-window">
         <span class="modal-close" onclick="closeModal('calendarModal')">&times;</span>
-        <h2>📅 Customer Calendar Panel</h2>
-        
-        <div class="split-choice-box">
-            <button id="btnTabCal" class="active" onclick="switchCalendarTab('cal')"><i class="fa fa-calendar"></i> Calendar View</button>
-            <button id="btnTabAddCal" onclick="switchCalendarTab('add')"><i class="fa fa-plus"></i> Add Event</button>
-        </div>
-
-        <div id="calendarSuccessBanner" class="success-banner">🎉 Event Booked & Added Successfully!</div>
-
-        <!-- Sub-View: Calendar List Panel -->
-        <div id="tabCalendarView">
-            <div id="calendarListContainer">
-                <!-- Data injection -->
-            </div>
-        </div>
-
-        <!-- Sub-View: Interactive Entry Form Panel -->
-        <div id="tabCalendarAddForm" style="display: none;">
-            <form id="addEventForm" onsubmit="submitEventForm(event)">
-                <div class="form-element">
-                    <label>Customer Name</label>
-                    <input type="text" id="custName" required placeholder="John Doe">
-                </div>
-                <div class="form-element">
-                    <label>Contact Number</label>
-                    <input type="tel" id="custContact" required placeholder="919908180194">
-                </div>
-                <div class="form-element">
-                    <label>Event Target Date</label>
-                    <input type="date" id="custDate" required>
-                </div>
-                <div class="form-element">
-                    <label>Venue Location</label>
-                    <input type="text" id="custLoc" required placeholder="Proddatur Ground Venue">
-                </div>
-                <button type="submit" class="btn-yellow">Submit Secure Entry 💾</button>
-            </form>
+        <h2>📅 Dynamic Calendar View</h2>
+        <div id="calendarListContainer">
+            <!-- Dynamic Injection -->
         </div>
     </div>
 </div>
 
-<!-- MODAL: REVENUE MANAGEMENT SYSTEM -->
-<div class="modal-overlay" id="revenueModal">
+<!-- MODAL: INSTANT INVOICE & SHARE -->
+<div class="modal-overlay" id="invoiceModal">
     <div class="modal-window">
-        <span class="modal-close" onclick="closeModal('revenueModal')">&times;</span>
-        <h2>💰 Revenue Matrix Control</h2>
-
-        <div class="split-choice-box">
-            <button id="btnTabRevData" class="active" onclick="switchRevenueTab('view')"><i class="fa fa-chart-line"></i> Revenue View</button>
-            <button id="btnTabRevAdd" onclick="switchRevenueTab('add')"><i class="fa fa-plus"></i> Add Revenue</button>
+        <span class="modal-close" onclick="closeModal('invoiceModal')">&times;</span>
+        <h2>🧾 Instant Invoice Generator</h2>
+        <div class="form-element">
+            <label>Select Booking</label>
+            <select id="invoiceBookingSelect" onchange="generateInvoicePreview()">
+                <option value="">-- Choose Customer Booking --</option>
+            </select>
         </div>
+        <div id="invoicePreviewArea" style="display:none;">
+            <div class="receipt">
+                <h3 style="text-align:center; margin-bottom:15px; color:#e6a100;">HAPPY DAYS DECORS</h3>
+                <div class="receipt-row"><span>Invoice ID:</span> <span id="invId"></span></div>
+                <div class="receipt-row"><span>Customer:</span> <span id="invName"></span></div>
+                <div class="receipt-row"><span>Event:</span> <span id="invEvent"></span></div>
+                <div class="receipt-row"><span>Date:</span> <span id="invDate"></span></div>
+                <div class="receipt-row"><span>Location:</span> <span id="invLoc"></span></div>
+                <div class="receipt-total"><span>Total Amount:</span> <span id="invTotal"></span></div>
+            </div>
+            <div class="receipt-ctas">
+                <a id="invWhatsappBtn" href="#" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Share WhatsApp</a>
+                <button class="btn-secondary" onclick="window.print()"><i class="fa fa-print"></i> Print Invoice</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-        <div id="revenueSuccessBanner" class="success-banner">💰 Revenue Record Added Successfully!</div>
+<!-- MODAL: INSTAGRAM DISCOUNT (5%) -->
+<div class="modal-overlay" id="discountModal">
+    <div class="modal-window">
+        <span class="modal-close" onclick="closeModal('discountModal')">&times;</span>
+        <h2>📸 Instagram Follower Discount</h2>
+        <div id="discountBanner" class="success-banner">✅ 5% Discount Applied to Booking!</div>
+        <div class="form-element">
+            <label>Select Booking to Apply Discount</label>
+            <select id="discountBookingSelect">
+                <!-- Dynamic Options -->
+            </select>
+        </div>
+        <div class="form-element">
+            <label>Customer Instagram Handle</label>
+            <input type="text" id="instaHandle" placeholder="@customer_username">
+        </div>
+        <button class="btn-yellow" onclick="applyInstaDiscount()">Apply 5% Discount 🎁</button>
+    </div>
+</div>
 
-        <!-- Sub-View: Filterable Matrix Data Grid Overview -->
-        <div id="tabRevenueView">
-            <div class="form-element" style="margin-bottom: 10px;">
-                <label>Quick Period Cycle</label>
-                <select id="revPeriodFilter" onchange="filterRevenueData()">
-                    <option value="today">Today's Transactions</option>
-                    <option value="weekly">Weekly Statements</option>
-                    <option value="monthly" selected>Monthly Ledgers</option>
-                    <option value="annual">Annual Balances</option>
+<!-- MODAL: REFER & EARN (5%) -->
+<div class="modal-overlay" id="referralModal">
+    <div class="modal-window">
+        <span class="modal-close" onclick="closeModal('referralModal')">&times;</span>
+        <h2>🤝 Refer & Earn Manager</h2>
+        <div id="referralBanner" class="success-banner">✅ 5% Referral Commission Recorded!</div>
+        <form onsubmit="submitReferral(event)">
+            <div class="form-element">
+                <label>Referrer Name</label>
+                <input type="text" id="refName" required placeholder="Person who referred">
+            </div>
+            <div class="form-element">
+                <label>Referrer Phone</label>
+                <input type="tel" id="refPhone" required placeholder="919908180194">
+            </div>
+            <div class="form-element">
+                <label>Associated Booking</label>
+                <select id="refBookingSelect" required>
+                    <!-- Dynamic Options -->
                 </select>
             </div>
-            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-                <div class="form-element" style="flex:1; margin-bottom:0;">
-                    <label>From Date</label>
-                    <input type="date" id="revDateFrom" onchange="filterRevenueData()">
-                </div>
-                <div class="form-element" style="flex:1; margin-bottom:0;">
-                    <label>To Date</label>
-                    <input type="date" id="revDateTo" onchange="filterRevenueData()">
-                </div>
-            </div>
+            <button type="submit" class="btn-yellow">Calculate 5% Commission 💰</button>
+        </form>
+    </div>
+</div>
 
-            <div style="font-weight:700; font-size:16px; margin-bottom:12px; color:#e6a100;">Total Evaluated: ₹<span id="aggregatedTotal">0</span></div>
-            <div id="revenueListContainer">
-                <!-- Transjected lists -->
+<!-- MODAL: EXPENSE TRACKER -->
+<div class="modal-overlay" id="expenseModal">
+    <div class="modal-window">
+        <span class="modal-close" onclick="closeModal('expenseModal')">&times;</span>
+        <h2>💸 Expense Tracker</h2>
+        <div id="expenseBanner" class="success-banner">💸 Expense Logged! Net Profit Updated.</div>
+        <form onsubmit="submitExpense(event)">
+            <div class="form-element">
+                <label>Expense Category</label>
+                <select id="expCategory" required>
+                    <option value="Fresh Flowers Purchased">Fresh Flowers Purchased</option>
+                    <option value="Balloons & Raw Materials">Balloons & Raw Materials</option>
+                    <option value="Transport & Logistics">Transport & Logistics</option>
+                    <option value="Daily Worker Wages">Daily Worker Wages</option>
+                </select>
             </div>
-        </div>
+            <div class="form-element">
+                <label>Expense Amount (₹)</label>
+                <input type="number" id="expAmount" required placeholder="500">
+            </div>
+            <div class="form-element">
+                <label>Date</label>
+                <input type="date" id="expDate" required>
+            </div>
+            <button type="submit" class="btn-yellow">Post Expense Entry 📑</button>
+        </form>
+    </div>
+</div>
 
-        <!-- Sub-View: Transaction Entry Form Panel -->
-        <div id="tabRevenueAddForm" style="display: none;">
-            <form id="addRevForm" onsubmit="submitRevenueForm(event)">
-                <div class="form-element">
-                    <label>Unique Transaction Code Identifier</label>
-                    <input type="text" id="revCode" required placeholder="TXN-HDD-901">
-                </div>
-                <div class="form-element">
-                    <label>Payment Entry Date</label>
-                    <input type="date" id="revDate" required>
-                </div>
-                <div class="form-element">
-                    <label>Event Type Assignment</label>
-                    <select id="revType" required>
-                        <option value="Wedding Decoration">Wedding Decoration</option>
-                        <option value="Birthday Decoration">Birthday Decoration</option>
-                        <option value="Baby Shower">Baby Shower</option>
-                        <option value="Haldi & Mehendi">Haldi & Mehendi</option>
-                    </select>
-                </div>
-                <div class="form-element">
-                    <label>Gross Amount Realized (₹)</label>
-                    <input type="number" id="revAmount" required placeholder="999">
-                </div>
-                <button type="submit" class="btn-yellow">Post Secure Transaction 💳</button>
-            </form>
+<!-- MODAL: MATERIAL STOCK RECORD -->
+<div class="modal-overlay" id="stockModal">
+    <div class="modal-window">
+        <span class="modal-close" onclick="closeModal('stockModal')">&times;</span>
+        <h2>📦 Material Stock Inventory</h2>
+        <div id="stockListContainer">
+            <!-- Dynamic Inventory Item Cards -->
         </div>
     </div>
 </div>
 
-<!-- ================= SYSTEM CORE LOGIC INTERNALS ================= -->
+<!-- MODAL: ALERTS -->
+<div class="modal-overlay" id="alertsModal">
+    <div class="modal-window">
+        <span class="modal-close" onclick="closeModal('alertsModal')">&times;</span>
+        <h2>🚨 Operational Alerts</h2>
+        <div id="alertsContainer">
+            <div class="data-list-item" style="border-left: 4px solid #ff4d6d;">
+                <strong>Pending Balance:</strong> Kalyan Kumar owes ₹5,000 balance for Birthday Decoration.
+            </div>
+            <div class="data-list-item" style="border-left: 4px solid #e6a100;">
+                <strong>Low Stock Notice:</strong> Balloon Stock level under 500 units.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ================= SYSTEM LOGIC INTERNALS ================= -->
 <script>
-// Mock Memory Storage Variables Simulation Data Structure State Management
+// Mock Core Database
 let systemBookings = [
-    { id: 101, name: "Kalyan Kumar", phone: "919908180194", date: "2026-07-18", event: "Birthday Decoration", amount: 15000, location: "Proddatur", status: "Confirmed" },
-    { id: 102, name: "Suresh Raina", phone: "919908180194", date: "2026-07-18", event: "Wedding Decoration", amount: 75000, location: "YMR Colony Hall", status: "Partial Advance" },
-    { id: 103, name: "Anitha Reddy", phone: "919908180194", date: "2026-07-18", event: "Haldi & Mehendi", amount: 12000, location: "Home Setup, Proddatur", status: "Pending Balance" }
+    { id: 101, name: "Kalyan Kumar", phone: "919908180194", date: "2026-07-20", event: "Birthday Decoration", amount: 15000, location: "Proddatur", status: "Confirmed" },
+    { id: 102, name: "Suresh Raina", phone: "919908180194", date: "2026-07-20", event: "Wedding Decoration", amount: 75000, location: "YMR Colony Hall", status: "Confirmed" },
+    { id: 103, name: "Anitha Reddy", phone: "919908180194", date: "2026-07-22", event: "Haldi & Mehendi", amount: 12000, location: "Home Setup, Proddatur", status: "Confirmed" }
 ];
 
-let systemRevenue = [
-    { code: "TXN-7711", date: "2026-07-18", type: "Birthday Decoration", amount: 15000 },
-    { code: "TXN-7712", date: "2026-07-18", type: "Wedding Decoration", amount: 35000 },
-    { code: "TXN-7690", date: "2026-07-10", type: "Baby Shower", amount: 9500 },
-    { code: "TXN-7541", date: "2026-06-15", type: "Haldi & Mehendi", amount: 22000 }
+let systemExpenses = [
+    { id: 1, category: "Fresh Flowers Purchased", amount: 3000, date: "2026-07-20" },
+    { id: 2, category: "Transport & Logistics", amount: 1500, date: "2026-07-20" }
 ];
 
-let loggedInUser = null;
+let systemStock = [
+    { name: "Arch Metal Frames", qty: 12, unit: "Sets" },
+    { name: "LED Warm Lights", qty: 45, unit: "Rolls" },
+    { name: "Artificial Flower Panels", qty: 80, unit: "Pieces" },
+    { name: "Balloon Packs", qty: 400, unit: "Units" }
+];
 
-// Routing Authentication Handler
+// Authentication Routing
 function handleLogin() {
     const userVal = document.getElementById("username").value.trim();
     const passVal = document.getElementById("password").value.trim();
     const errBanner = document.getElementById("loginError");
 
-    if(userVal === "@HDDM2026" && passVal === "MHDD@2026") {
-        loggedInUser = "Manager";
-        bootDashboard("Event Managers Desk");
-    } else if(userVal === "@HDDA2026" && passVal === "ADMINHDD@2026") {
-        loggedInUser = "Admin";
-        bootDashboard("Admin Desk");
+    if((userVal === "@HDDA2026" && passVal === "ADMINHDD@2026") || (userVal === "@HDDM2026" && passVal === "MHDD@2026")) {
+        document.getElementById("loginError").style.display = "none";
+        document.getElementById("authPortal").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+        refreshAutomaticStats();
     } else {
         errBanner.style.display = "block";
     }
 }
 
-function bootDashboard(deskTitleName) {
-    document.getElementById("loginError").style.display = "none";
-    document.getElementById("authPortal").style.display = "none";
-    document.getElementById("dashboard").style.display = "block";
-    document.getElementById("deskTitle").innerText = deskTitleName;
-    
-    // Auto sync dashboard widgets counts
-    document.getElementById("statToday").innerText = systemBookings.filter(b => b.date === "2026-07-18").length;
-    document.getElementById("statTotal").innerText = systemBookings.length + 139;
-    
-    buildBookingsFeed();
-}
-
 function handleLogout() {
-    loggedInUser = null;
     document.getElementById("username").value = "";
     document.getElementById("password").value = "";
     document.getElementById("dashboard").style.display = "none";
     document.getElementById("authPortal").style.display = "block";
 }
 
-// Modal Toggle Window Functions
-function openModal(id) { document.getElementById(id).style.display = "flex"; }
+// Modal Control Helpers
+function openModal(id) { 
+    document.getElementById(id).style.display = "flex"; 
+    if(id === 'calendarModal') renderCalendarView();
+    if(id === 'invoiceModal') populateInvoiceDropdown();
+    if(id === 'discountModal') populateDiscountDropdown();
+    if(id === 'referralModal') populateReferralDropdown();
+    if(id === 'stockModal') renderStockList();
+}
 function closeModal(id) { document.getElementById(id).style.display = "none"; }
 
-// Dynamic Builders: Bookings & Message Format Receipts
-function buildBookingsFeed() {
-    const container = document.getElementById("bookingsListContainer");
-    container.innerHTML = "";
-    
-    systemBookings.forEach(booking => {
-        const bubble = document.createElement("div");
-        bubble.className = "msg-bubble";
-        bubble.onclick = () => showBookingReceipt(booking.id);
-        bubble.innerHTML = `
-            <h4>💬 Message Alert from ${booking.name}</h4>
-            <p>New Booking request detected for <b>${booking.event}</b> on date ${booking.date}. Click to process receipt billing information.</p>
-        `;
-        container.appendChild(bubble);
-    });
+// Automatic Stats Computation
+function refreshAutomaticStats() {
+    const todayStr = "2026-07-20"; // Today Anchor
+    const todayEvents = systemBookings.filter(b => b.date === todayStr).length;
+    const totalRev = systemBookings.reduce((sum, b) => sum + parseInt(b.amount), 0);
+    const totalExp = systemExpenses.reduce((sum, e) => sum + parseInt(e.amount), 0);
+    const netProfit = totalRev - totalExp;
+
+    document.getElementById("statToday").innerText = todayEvents;
+    document.getElementById("statTotalBookings").innerText = systemBookings.length;
+    document.getElementById("statNetProfit").innerText = "₹" + netProfit.toLocaleString('en-IN');
 }
 
-function showBookingReceipt(id) {
-    const booking = systemBookings.find(b => b.id === id);
-    if(!booking) return;
+// Module: New Booking
+function submitNewBooking(e) {
+    e.preventDefault();
+    const newBook = {
+        id: Date.now(),
+        name: document.getElementById("bookName").value,
+        phone: document.getElementById("bookPhone").value,
+        event: document.getElementById("bookType").value,
+        date: document.getElementById("bookDate").value,
+        location: document.getElementById("bookLoc").value,
+        amount: parseInt(document.getElementById("bookAmount").value),
+        status: "Confirmed"
+    };
 
-    document.getElementById("bookingsListContainer").style.display = "none";
-    const receiptBox = document.getElementById("receiptContainer");
-    receiptBox.style.display = "block";
+    systemBookings.push(newBook);
+    refreshAutomaticStats();
 
-    document.getElementById("receiptContent").innerHTML = `
-        <div class="receipt">
-            <h3 style="text-align:center; margin-bottom:15px; color:#e6a100;">🧾 TRANSACTION INVOICE RECEIPT</h3>
-            <div class="receipt-row"><span>Receipt ID:</span> <span>#HDD-2026-${booking.id}</span></div>
-            <div class="receipt-row"><span>Customer:</span> <span><b>${booking.name}</b></span></div>
-            <div class="receipt-row"><span>Contact:</span> <span>${booking.phone}</span></div>
-            <div class="receipt-row"><span>Date scheduled:</span> <span>${booking.date}</span></div>
-            <div class="receipt-row"><span>Location Space:</span> <span>${booking.location}</span></div>
-            <div class="receipt-row"><span>Assigned Event:</span> <span>${booking.event}</span></div>
-            <div class="receipt-row"><span>Status State:</span> <span>${booking.status}</span></div>
-            <div class="receipt-total"><span>Amount Liability</span> <span>₹${booking.amount}</span></div>
-        </div>
-        <div class="receipt-ctas">
-            <a href="https://wa.me/${booking.phone}?text=Hello%20${encodeURIComponent(booking.name)},%20Your%20booking%20for%20${encodeURIComponent(booking.event)}%20on%20${booking.date}%20is%20processed.%20Total:%20₹${booking.amount}." target="_blank" class="btn-success"><i class="fab fa-whatsapp"></i> Dispatch Ping</a>
-            <button class="btn-secondary" onclick="backToBookingsList()">Dismiss View</button>
-        </div>
-    `;
+    const banner = document.getElementById("bookingSuccessBanner");
+    banner.style.display = "block";
+    setTimeout(() => { 
+        banner.style.display = "none"; 
+        closeModal("newBookingModal");
+    }, 1200);
 }
 
-function backToBookingsList() {
-    document.getElementById("receiptContainer").style.display = "none";
-    document.getElementById("bookingsListContainer").style.display = "flex";
-}
-
-// Module: Calendar Views Management Sub-router
-function openCalendarModal() {
-    openModal('calendarModal');
-    switchCalendarTab('cal');
-}
-
-function switchCalendarTab(tabType) {
-    if(tabType === 'cal') {
-        document.getElementById("btnTabCal").classList.add("active");
-        document.getElementById("btnTabAddCal").classList.remove("active");
-        document.getElementById("tabCalendarView").style.display = "block";
-        document.getElementById("tabCalendarAddForm").style.display = "none";
-        renderCalendarDataRecords();
-    } else {
-        document.getElementById("btnTabCal").classList.remove("active");
-        document.getElementById("btnTabAddCal").classList.add("active");
-        document.getElementById("tabCalendarView").style.display = "none";
-        document.getElementById("tabCalendarAddForm").style.display = "block";
-    }
-}
-
-function renderCalendarDataRecords() {
+// Module: Automatic Calendar View
+function renderCalendarView() {
     const listCont = document.getElementById("calendarListContainer");
     listCont.innerHTML = "";
     
-    systemBookings.forEach(ev => {
+    // Auto-sorted by date
+    let sorted = [...systemBookings].sort((a,b) => new Date(a.date) - new Date(b.date));
+    
+    sorted.forEach(ev => {
         const item = document.createElement("div");
         item.className = "data-list-item";
+        item.style.borderLeft = "4px solid #e6a100";
         item.innerHTML = `
             <div style="display:flex; justify-content:space-between; align-items:center;">
                 <div>
                     <strong>${ev.date}</strong> - ${ev.name}<br>
-                    <span style="font-size:12px; color:#666;">📌 ${ev.event} | Room: ${ev.location}</span>
+                    <span style="font-size:12px; color:#666;">📌 ${ev.event} | ${ev.location}</span>
                 </div>
-                <a href="https://wa.me/${ev.phone}?text=Hi%20${encodeURIComponent(ev.name)},%20this%20is%20a%20friendly%20reminder%20for%20your%20upcoming%20${encodeURIComponent(ev.event)}%20celebration%20on%20${ev.date}!%20-Happy%20Days%20Decors" target="_blank" style="background:#25D366; color:white; padding:6px 10px; border-radius:8px; font-size:12px; text-decoration:none;"><i class="fab fa-whatsapp"></i> Alert</a>
+                <div style="font-weight:700; color:#e6a100;">₹${ev.amount}</div>
             </div>
         `;
         listCont.appendChild(item);
     });
 }
 
-function submitEventForm(e) {
-    e.preventDefault();
-    const newEv = {
-        id: Date.now(),
-        name: document.getElementById("custName").value,
-        phone: document.getElementById("custContact").value,
-        date: document.getElementById("custDate").value,
-        location: document.getElementById("custLoc").value,
-        event: "Custom Event Service Package",
-        amount: 5000,
-        status: "Active Calendar Entry"
-    };
-
-    systemBookings.push(newEv);
-    document.getElementById("addEventForm").reset();
-    
-    // Trigger Success notification Banner
-    const banner = document.getElementById("calendarSuccessBanner");
-    banner.style.display = "block";
-    setTimeout(() => { banner.style.display = "none"; switchCalendarTab('cal'); }, 1500);
-    
-    // Sync counts indicators
-    bootDashboard(loggedInUser === "Admin" ? "Admin Desk" : "Event Managers Desk");
+// Module: Instant Invoice & Sharing
+function populateInvoiceDropdown() {
+    const select = document.getElementById("invoiceBookingSelect");
+    select.innerHTML = '<option value="">-- Choose Customer Booking --</option>';
+    systemBookings.forEach(b => {
+        select.innerHTML += `<option value="${b.id}">${b.name} - ${b.event} (${b.date})</option>`;
+    });
 }
 
-// Module: Revenue Metric Architecture Framework
-function openRevenueModal() {
-    openModal('revenueModal');
-    switchRevenueTab('view');
-}
-
-function switchRevenueTab(mode) {
-    if(mode === 'view') {
-        document.getElementById("btnTabRevData").classList.add("active");
-        document.getElementById("btnTabRevAdd").classList.remove("active");
-        document.getElementById("tabRevenueView").style.display = "block";
-        document.getElementById("tabRevenueAddForm").style.display = "none";
-        filterRevenueData();
-    } else {
-        document.getElementById("btnTabRevData").classList.remove("active");
-        document.getElementById("btnTabRevAdd").classList.add("active");
-        document.getElementById("tabRevenueView").style.display = "none";
-        document.getElementById("tabRevenueAddForm").style.display = "block";
-    }
-}
-
-function filterRevenueData() {
-    const cycle = document.getElementById("revPeriodFilter").value;
-    const fromVal = document.getElementById("revDateFrom").value;
-    const toVal = document.getElementById("revDateTo").value;
-    
-    let filtered = [...systemRevenue];
-
-    // Filter by specific manual explicit ranges if present
-    if (fromVal || toVal) {
-        if(fromVal) filtered = filtered.filter(r => r.date >= fromVal);
-        if(toVal) filtered = filtered.filter(r => r.date <= toVal);
-    } else {
-        // Fallback processing using contextual mock anchor limits
-        const anchorDateStr = "2026-07-18";
-        if(cycle === "today") {
-            filtered = filtered.filter(r => r.date === anchorDateStr);
-        } else if(cycle === "weekly") {
-            filtered = filtered.filter(r => r.date >= "2026-07-12" && r.date <= "2026-07-18");
-        } else if(cycle === "monthly") {
-            filtered = filtered.filter(r => r.date >= "2026-07-01" && r.date <= "2026-07-31");
-        } else if(cycle === "annual") {
-            filtered = filtered.filter(r => r.date.startsWith("2026"));
-        }
-    }
-
-    // Calculations aggregation output
-    let aggregateSum = filtered.reduce((total, element) => total + parseInt(element.amount), 0);
-    document.getElementById("aggregatedTotal").innerText = aggregateSum.toLocaleString('en-IN');
-
-    // Build lists view
-    const listCont = document.getElementById("revenueListContainer");
-    listCont.innerHTML = "";
-    
-    if(filtered.length === 0) {
-        listCont.innerHTML = `<p style="text-align:center; font-size:13px; color:#999; padding:20px;">No historical payments logged inside selection criteria.</p>`;
+function generateInvoicePreview() {
+    const id = document.getElementById("invoiceBookingSelect").value;
+    const booking = systemBookings.find(b => b.id == id);
+    if(!booking) {
+        document.getElementById("invoicePreviewArea").style.display = "none";
         return;
     }
 
-    filtered.forEach(rev => {
-        const item = document.createElement("div");
-        item.className = "data-list-item";
-        item.style.borderLeft = "4px solid #25D366";
-        item.innerHTML = `
-            <div style="display:flex; justify-content:between; align-items:center; width:100%;">
-                <div style="flex:1;">
-                    <strong>${rev.code}</strong> <small style="color:#777;">(${rev.date})</small><br>
-                    <span style="font-size:12px; color:#666;">Type: ${rev.type}</span>
-                </div>
-                <div style="font-weight:700; color:#25D366; font-size:15px;">+ ₹${rev.amount}</div>
-            </div>
-        `;
-        listCont.appendChild(item);
+    document.getElementById("invId").innerText = "#HDD-" + booking.id;
+    document.getElementById("invName").innerText = booking.name;
+    document.getElementById("invEvent").innerText = booking.event;
+    document.getElementById("invDate").innerText = booking.date;
+    document.getElementById("invLoc").innerText = booking.location;
+    document.getElementById("invTotal").innerText = "₹" + booking.amount.toLocaleString('en-IN');
+
+    const message = `Hello ${booking.name}, Here is your booking invoice from Happy Days Decors.%0AEvent: ${booking.event}%0ADate: ${booking.date}%0ATotal Amount: ₹${booking.amount}. Thank you!`;
+    document.getElementById("invWhatsappBtn").href = `https://wa.me/${booking.phone}?text=${message}`;
+
+    document.getElementById("invoicePreviewArea").style.display = "block";
+}
+
+// Module: Instagram Discount (5%)
+function populateDiscountDropdown() {
+    const select = document.getElementById("discountBookingSelect");
+    select.innerHTML = '';
+    systemBookings.forEach(b => {
+        select.innerHTML += `<option value="${b.id}">${b.name} - Current Amount: ₹${b.amount}</option>`;
     });
 }
 
-function submitRevenueForm(e) {
+function applyInstaDiscount() {
+    const id = document.getElementById("discountBookingSelect").value;
+    const booking = systemBookings.find(b => b.id == id);
+    if(booking) {
+        booking.amount = Math.round(booking.amount * 0.95); // 5% Off
+        refreshAutomaticStats();
+        
+        const banner = document.getElementById("discountBanner");
+        banner.style.display = "block";
+        setTimeout(() => { 
+            banner.style.display = "none"; 
+            closeModal("discountModal");
+        }, 1200);
+    }
+}
+
+// Module: Refer & Earn (5%)
+function populateReferralDropdown() {
+    const select = document.getElementById("refBookingSelect");
+    select.innerHTML = '';
+    systemBookings.forEach(b => {
+        select.innerHTML += `<option value="${b.id}">${b.name} (${b.event})</option>`;
+    });
+}
+
+function submitReferral(e) {
     e.preventDefault();
-    const newRev = {
-        code: document.getElementById("revCode").value,
-        date: document.getElementById("revDate").value,
-        type: document.getElementById("revType").value,
-        amount: parseInt(document.getElementById("revAmount").value)
+    const id = document.getElementById("refBookingSelect").value;
+    const booking = systemBookings.find(b => b.id == id);
+    if(booking) {
+        const comm = Math.round(booking.amount * 0.05);
+        
+        // Log as expense
+        systemExpenses.push({
+            id: Date.now(),
+            category: `Referral Comm: ${document.getElementById("refName").value}`,
+            amount: comm,
+            date: "2026-07-20"
+        });
+        
+        refreshAutomaticStats();
+        const banner = document.getElementById("referralBanner");
+        banner.style.display = "block";
+        setTimeout(() => { 
+            banner.style.display = "none"; 
+            closeModal("referralModal");
+        }, 1200);
+    }
+}
+
+// Module: Expense Tracker
+function submitExpense(e) {
+    e.preventDefault();
+    const newExp = {
+        id: Date.now(),
+        category: document.getElementById("expCategory").value,
+        amount: parseInt(document.getElementById("expAmount").value),
+        date: document.getElementById("expDate").value
     };
 
-    systemRevenue.unshift(newRev);
-    document.getElementById("addRevForm").reset();
+    systemExpenses.push(newExp);
+    refreshAutomaticStats();
 
-    const banner = document.getElementById("revenueSuccessBanner");
+    const banner = document.getElementById("expenseBanner");
     banner.style.display = "block";
-    setTimeout(() => { banner.style.display = "none"; switchRevenueTab('view'); }, 1500);
+    setTimeout(() => { 
+        banner.style.display = "none"; 
+        closeModal("expenseModal");
+    }, 1200);
 }
-</script>
-    <script>
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzlm5LYPzEQ4LjBKOx11YWjfxelOtGsmjeX8Tw6BVNWqjUQoJguExr6pTIyWORq8-JT/exec";
 
-function loadDataFromGoogleSheets() {
-  fetch(`${WEB_APP_URL}?action=getAllData`)
-    .then(response => response.json())
-    .then(res => {
-      if (res.status === "success") {
-        // Map Google Sheet objects directly back into the live local view state arrays
-        systemBookings = res.data.bookings.map(b => ({
-          id: b.id,
-          name: b.name || b.customername,
-          phone: b.phone || b.contactnumber,
-          date: b.date || b.eventtargetdate,
-          event: b.event || b.eventtype,
-          amount: Number(b.amount || b.grossamountrealized || 0),
-          location: b.location || b.venuelocation,
-          status: b.status || "Confirmed"
-        }));
-
-        systemRevenue = res.data.revenue.map(r => ({
-          code: r.transactioncode || r.code,
-          date: r.paymententrydate || r.date,
-          type: r.eventtypeassignment || r.type,
-          amount: Number(r.grossamountrealized || r.amount || 0)
-        }));
-
-        // Refresh UI dashboard counters and render elements
-        bootDashboard(loggedInUser === "Admin" ? "Admin Desk" : "Event Managers Desk");
-      }
+// Module: Material Stock Record
+function renderStockList() {
+    const listCont = document.getElementById("stockListContainer");
+    listCont.innerHTML = "";
+    systemStock.forEach(item => {
+        listCont.innerHTML += `
+            <div class="data-list-item" style="display:flex; justify-content:space-between; align-items:center;">
+                <div><strong>${item.name}</strong></div>
+                <div style="font-weight:700; color:#e6a100;">${item.qty} ${item.unit}</div>
+            </div>
+        `;
     });
 }
-        
-    </script>
+</script>
 </body>
 </html>
