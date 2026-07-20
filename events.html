@@ -223,33 +223,6 @@ transition: 0.4s;
 transform: scale(1.06);
 }
 
-/* Floating Share Icon on Top Right of Card Image */
-.share-btn-top {
-position: absolute;
-top: 12px;
-right: 12px;
-width: 36px;
-height: 36px;
-background: rgba(255, 255, 255, 0.9);
-border-radius: 50%;
-display: flex;
-justify-content: center;
-align-items: center;
-color: #333;
-font-size: 14px;
-cursor: pointer;
-box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-transition: 0.3s;
-border: none;
-z-index: 2;
-}
-
-.share-btn-top:hover {
-background: var(--emoji-yellow);
-color: #fff;
-transform: scale(1.1);
-}
-
 .card-info {
 padding: 18px;
 flex-grow: 1;
@@ -300,6 +273,7 @@ margin-bottom: 12px;
 .card-actions-wrapper {
 display: flex;
 gap: 8px;
+align-items: center;
 }
 
 .slot-btn {
@@ -320,6 +294,7 @@ text-align: center;
 background: #cc8f00;
 }
 
+/* Single Share Button Style */
 .share-action-btn {
 width: 42px;
 height: 42px;
@@ -333,6 +308,7 @@ align-items: center;
 font-size: 15px;
 cursor: pointer;
 transition: 0.3s;
+flex-shrink: 0;
 }
 
 .share-action-btn:hover {
@@ -581,7 +557,7 @@ background: #fafafa;
     <span class="text-two">Happy Days Decors</span>
   </div>
 
-  <img src="logo.png" class="logo">
+  <img src="file_000000000d9c71fa9912d17d0800adf7.p" class="logo">
 
   <div class="stats-container">
     <div class="stat-item">
@@ -796,10 +772,7 @@ function displayCards(items) {
     
     card.innerHTML = `
       <div class="card-img-wrapper">
-        <img src="file_000000000d9c71fa9912d17d0800adf7.p" alt="${prod.title}">
-        <button class="share-btn-top" onclick="shareService('${prod.title}', '${prod.code}', '${prod.price}')" title="Share Package">
-          <i class="fas fa-share-alt"></i>
-        </button>
+        <img src="${cardImg}" alt="${prod.title}">
       </div>
       <div class="card-info">
         <div>
@@ -813,7 +786,7 @@ function displayCards(items) {
           <div class="card-price">${prod.price}</div>
           <div class="card-actions-wrapper">
             <button class="slot-btn" onclick="openBookingModal('${prod.title}', '${prod.code}', '${prod.price}')">Slot Book</button>
-            <button class="share-action-btn" onclick="shareService('${prod.title}', '${prod.code}', '${prod.price}')" title="Share via WhatsApp/Socials">
+            <button class="share-action-btn" onclick="shareService('${prod.title}', '${prod.code}', '${prod.price}')" title="Share Package">
               <i class="fas fa-share-alt"></i>
             </button>
           </div>
@@ -829,7 +802,7 @@ function shareService(title, code, price) {
   const shareText = `Check out this decoration package from Happy Days Decors!\n\n✨ *${title}*\n🆔 Code: ${code}\n💰 Price: ${price}\n\nBook your celebration now with Happy Connect!`;
   const shareUrl = window.location.href;
 
-  // Use Web Share API if supported (Mobile phones / Modern Browsers)
+  // Use Web Share API if supported (Mobile phones)
   if (navigator.share) {
     navigator.share({
       title: `${title} - Happy Days Decors`,
@@ -839,7 +812,7 @@ function shareService(title, code, price) {
       console.log('Share canceled or failed', err);
     });
   } else {
-    // Desktop Fallback to direct WhatsApp Sharing
+    // Fallback to direct WhatsApp Sharing (Desktop/Other browsers)
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText + "\n" + shareUrl)}`;
     window.open(whatsappUrl, '_blank');
   }
@@ -948,7 +921,7 @@ bookingForm.addEventListener('submit', (e) => {
                           `----------------------------------\n` +
                           `Sent via Happy Connect.`;
 
-  const targetBusinessNumber = "918125727668"; 
+  const targetBusinessNumber = "919908180194"; 
   const cleanMessage = encodeURIComponent(whatsappMessage);
   const whatsappUrl = `https://wa.me/${targetBusinessNumber}?text=${cleanMessage}`;
 
