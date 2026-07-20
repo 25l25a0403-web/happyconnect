@@ -197,6 +197,7 @@ transition: 0.3s ease;
 display: flex;
 flex-direction: column;
 border: 1px solid #f0f0f0;
+position: relative;
 }
 
 .card:hover {
@@ -208,6 +209,7 @@ box-shadow: 0 12px 30px rgba(230, 161, 0, 0.12);
 width: 100%;
 height: 190px;
 overflow: hidden;
+position: relative;
 }
 
 .card-img-wrapper img {
@@ -219,6 +221,33 @@ transition: 0.4s;
 
 .card:hover .card-img-wrapper img {
 transform: scale(1.06);
+}
+
+/* Floating Share Icon on Top Right of Card Image */
+.share-btn-top {
+position: absolute;
+top: 12px;
+right: 12px;
+width: 36px;
+height: 36px;
+background: rgba(255, 255, 255, 0.9);
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+color: #333;
+font-size: 14px;
+cursor: pointer;
+box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+transition: 0.3s;
+border: none;
+z-index: 2;
+}
+
+.share-btn-top:hover {
+background: var(--emoji-yellow);
+color: #fff;
+transform: scale(1.1);
 }
 
 .card-info {
@@ -268,8 +297,13 @@ font-weight: 600;
 margin-bottom: 12px;
 }
 
+.card-actions-wrapper {
+display: flex;
+gap: 8px;
+}
+
 .slot-btn {
-width: 100%;
+flex: 1;
 padding: 11px;
 background: var(--emoji-yellow);
 color: white;
@@ -284,6 +318,26 @@ text-align: center;
 
 .slot-btn:hover {
 background: #cc8f00;
+}
+
+.share-action-btn {
+width: 42px;
+height: 42px;
+background: #f4f4f4;
+color: #555;
+border: none;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 15px;
+cursor: pointer;
+transition: 0.3s;
+}
+
+.share-action-btn:hover {
+background: #25D366;
+color: #fff;
 }
 
 /* Modal Booking Architecture */
@@ -513,7 +567,7 @@ background: #fafafa;
   <span style="left:25%;animation-duration:11s;">🥳</span>
   <span style="left:35%;animation-duration:13s;">🎉</span>
   <span style="left:45%;animation-duration:8s;">🎈</span>
-  <span style="left:55%;animation-duration:100ms;">😁</span>
+  <span style="left:55%;animation-duration:10s;">😁</span>
   <span style="left:65%;animation-duration:14s;">🎊</span>
   <span style="left:75%;animation-duration:9s;">😊</span>
   <span style="left:85%;animation-duration:12s;">🎈</span>
@@ -527,16 +581,16 @@ background: #fafafa;
     <span class="text-two">Happy Days Decors</span>
   </div>
 
-  <img src="file_000000000d9c71fa9912d17d0800adf7.png" class="logo">
+  <img src="logo.png" class="logo">
 
   <div class="stats-container">
     <div class="stat-item">
       <i class="fab fa-instagram"></i>
-      <span>0 Followers</span>
+      <span>15K+ Followers</span>
     </div>
     <div class="stat-item">
       <i class="fas fa-users"></i>
-      <span>0 Customers</span>
+      <span>2.5K+ Customers</span>
     </div>
   </div>
 
@@ -742,7 +796,10 @@ function displayCards(items) {
     
     card.innerHTML = `
       <div class="card-img-wrapper">
-        <img src="${cardImg}" alt="${prod.title}">
+        <img src="file_000000000d9c71fa9912d17d0800adf7.p" alt="${prod.title}">
+        <button class="share-btn-top" onclick="shareService('${prod.title}', '${prod.code}', '${prod.price}')" title="Share Package">
+          <i class="fas fa-share-alt"></i>
+        </button>
       </div>
       <div class="card-info">
         <div>
@@ -754,12 +811,38 @@ function displayCards(items) {
         </div>
         <div>
           <div class="card-price">${prod.price}</div>
-          <button class="slot-btn" onclick="openBookingModal('${prod.title}', '${prod.code}', '${prod.price}')">Slot Book</button>
+          <div class="card-actions-wrapper">
+            <button class="slot-btn" onclick="openBookingModal('${prod.title}', '${prod.code}', '${prod.price}')">Slot Book</button>
+            <button class="share-action-btn" onclick="shareService('${prod.title}', '${prod.code}', '${prod.price}')" title="Share via WhatsApp/Socials">
+              <i class="fas fa-share-alt"></i>
+            </button>
+          </div>
         </div>
       </div>
     `;
     grid.appendChild(card);
   });
+}
+
+// Service Package Sharing Functionality
+function shareService(title, code, price) {
+  const shareText = `Check out this decoration package from Happy Days Decors!\n\n✨ *${title}*\n🆔 Code: ${code}\n💰 Price: ${price}\n\nBook your celebration now with Happy Connect!`;
+  const shareUrl = window.location.href;
+
+  // Use Web Share API if supported (Mobile phones / Modern Browsers)
+  if (navigator.share) {
+    navigator.share({
+      title: `${title} - Happy Days Decors`,
+      text: shareText,
+      url: shareUrl
+    }).catch((err) => {
+      console.log('Share canceled or failed', err);
+    });
+  } else {
+    // Desktop Fallback to direct WhatsApp Sharing
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText + "\n" + shareUrl)}`;
+    window.open(whatsappUrl, '_blank');
+  }
 }
 
 // Initial Population Run
@@ -865,16 +948,13 @@ bookingForm.addEventListener('submit', (e) => {
                           `----------------------------------\n` +
                           `Sent via Happy Connect.`;
 
-  // Change phone below to your dynamic business number if required
   const targetBusinessNumber = "918125727668"; 
   const cleanMessage = encodeURIComponent(whatsappMessage);
   const whatsappUrl = `https://wa.me/${targetBusinessNumber}?text=${cleanMessage}`;
 
-  // Update UI architecture state 
   bookingForm.style.display = "none";
   successMessageBox.style.display = "block";
   
-  // Trigger modern immediate processing execution
   setTimeout(() => {
     window.open(whatsappUrl, '_blank');
   }, 800);
